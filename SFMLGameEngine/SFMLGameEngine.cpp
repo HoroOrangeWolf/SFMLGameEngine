@@ -1,8 +1,12 @@
-﻿
-
-#include <iostream>
+﻿#include <SFML/Graphics.hpp>
+#include "Engine.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Engine engine("title", 800, 800);
+
+    engine.run();
+    
+
+    return 0;
 }
