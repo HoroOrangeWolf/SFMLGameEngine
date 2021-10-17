@@ -12,7 +12,6 @@ private:
 	std::string windowTitle;
 	RenderWindow *render;
 	auto getCurrentTime();
-	
 
 public:
 	Engine(std::string windowTitle, int windowWidth, int windowHeight, int videoStyle);
@@ -21,6 +20,8 @@ public:
 	~Engine();
 	void setFps(int fps);
 	void run();
+	bool isMouseInsideWindow();
+	Vector2i &getTrueMousePosition();
 
 
 };
