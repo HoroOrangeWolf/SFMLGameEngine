@@ -8,6 +8,7 @@ Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight)
 	this->windowWidth = windowWidth;
 	this->windowTitle = windowTitle;
 	this->videoStyle = -1;
+	this->color = Color::White;
 }
 
 auto Engine::getCurrentTime()
@@ -21,6 +22,7 @@ Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight, int v
 	this->windowWidth = windowWidth;
 	this->windowTitle = windowTitle;
 	this->videoStyle = videoStyle;
+	this->color = Color::White;
 }
 
 Engine::Engine(std::string windowTitle, int videoMod)
@@ -29,6 +31,7 @@ Engine::Engine(std::string windowTitle, int videoMod)
 	this->windowWidth = 0;
 	this->windowTitle = windowTitle;
 	this->videoStyle = -1;
+	this->color = Color::White;
 }
 
 Engine::~Engine()
@@ -41,19 +44,18 @@ void Engine::setFps(int fps)
 	this->fps = fps;
 }
 
+void Engine::setBackgroundColor(Color cl)
+{
+	this->color = cl;
+}
+
 void Engine::run()
 {
 	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
 	
-	sf::RectangleShape shape(sf::Vector2f(150, 150));
-	sf::RectangleShape square(sf::Vector2f(windowWidth, windowHeight));
+	sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
+	background.setFillColor(this->color);
 
-	sf::RectangleShape secondSquare(sf::Vector2f(150.f, 150.f));
-
-	shape.setFillColor(sf::Color::Green);
-	secondSquare.setFillColor(Color::Red);
-
-	secondSquare.move(150.0f, 150.0f);
 
 	int fpsInterval = (int)1000 / fps;
 	auto lastFrame = getCurrentTime();
@@ -77,56 +79,52 @@ void Engine::run()
 
 		lastFrame = currentTime;
 
-		if (Keyboard::isKeyPressed(Keyboard::W))
-		{
-			shape.move(0.0f, -1.0f);
-		}
-		if (Keyboard::isKeyPressed(Keyboard::A))
-		{
-			shape.move(-1.0f, 0.0f);
-		}
-		if (Keyboard::isKeyPressed(Keyboard::S))
-		{
-			shape.move(0.0f, 1.0f);
-		}
-		if (Keyboard::isKeyPressed(Keyboard::D))
-		{
-			shape.move(1.0f, 0.0f);
-		}
 
-		if (Keyboard::isKeyPressed(Keyboard::X))
-		{
-			shape.setRotation(shape.getRotation() + 1.0f);
-		}
-
-		
-
-
-
-		
 
 		Vector2i currentPosition = Mouse::getPosition();
 
 		if (currentPosition.x != lastposs.x && currentPosition.y != lastposs.y && isMouseInsideWindow()) {
-			std::cout << "-----------------------------------------------------------------------------------" << std::endl;
-			std::cout << "Mouse possition: x " << currentPosition.x << " y " << currentPosition.y << std::endl;
+			//std::cout << "-----------------------------------------------------------------------------------" << std::endl;
+			//std::cout << "Mouse possition: x " << currentPosition.x << " y " << currentPosition.y << std::endl;
 
 			Vector2i mouseTruePosition = getTrueMousePosition();
 
-			std::cout << "Mouse possition: x " << mouseTruePosition.x << " y " << mouseTruePosition.y << std::endl;
+			//std::cout << "Mouse possition: x " << mouseTruePosition.x << " y " << mouseTruePosition.y << std::endl;
 
 			lastposs = currentPosition;
 		}
 		
-
-		std::cout << secondSquare.getGlobalBounds().intersects(shape.getGlobalBounds()) << std::endl;
-
-
-
 		render->clear();
-		render->draw(square);
-		render->draw(shape);
-		render->draw(secondSquare);
+		render->draw(background);
+
+		{
+			std::list<MoveableBlock>::iterator beg = this->constantBlocks.begin();
+
+			while (beg != this->constantBlocks.end())
+			{
+				MoveableBlock& a = *beg;
+
+				render->draw(a);
+				beg++;
+			}
+
+		}
+
+		{
+			std::list<MoveableBlock>::iterator beg = this->toMoveList.begin();
+
+			while (beg != this->toMoveList.end())
+			{
+				MoveableBlock &a = *beg;
+
+				a.moveByStoredVector();
+
+				render->draw(a);
+				beg++;
+			}
+
+		}
+
 		render->display();
 	}
 
@@ -155,7 +153,15 @@ Vector2i& Engine::getTrueMousePosition()
 	return buff;
 }
 
-void Engine::addDrawable(Drawable& draw)
+void Engine::addConstantBlock(MoveableBlock& constant)
 {
-	this->toDrawList.push_back(draw);
+	this->constantBlocks.push_back(constant);
+}
+
+
+
+
+void Engine::addMoveableBlock(MoveableBlock& move)
+{
+	this->toMoveList.push_back(move);
 }

@@ -1,8 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <list>
 #include "Moveable.h"
-
 using namespace sf;
 
 class Engine {
@@ -13,9 +11,11 @@ private:
 	VideoMode mode;
 	std::string windowTitle;
 	RenderWindow *render;
-	std::list<Drawable&> toDrawList;
-	
+	sf::Color color;
+	std::list<MoveableBlock> toMoveList;
+	std::list<MoveableBlock> constantBlocks;
 	auto getCurrentTime();
+
 
 public:
 	Engine(std::string windowTitle, int windowWidth, int windowHeight, int videoStyle);
@@ -23,10 +23,10 @@ public:
 	Engine(std::string windowTitle, int windowWidth, int windowHeight);
 	~Engine();
 	void setFps(int fps);
+	void setBackgroundColor(sf::Color);
 	void run();
 	bool isMouseInsideWindow();
 	Vector2i &getTrueMousePosition();
-	void addDrawable(Drawable& draw);
-
-
+	void addMoveableBlock(MoveableBlock& move);
+	void addConstantBlock(MoveableBlock& constant);
 };

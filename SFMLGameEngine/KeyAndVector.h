@@ -3,11 +3,11 @@
 class KeyAndVector
 {
 public:
-	sf::Keyboard::Key key;
+	enum sf::Keyboard::Key key;
 	sf::Vector2f vector;
 
 
-	KeyAndVector(sf::Vector2f vector, sf::Keyboard::Key key);
+	KeyAndVector(sf::Vector2f vector,enum sf::Keyboard::Key key);
 
 };
 
