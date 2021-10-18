@@ -1,6 +1,9 @@
 #include "Engine.h"
 #include <chrono>
 #include <iostream>
+#include "PrimitiveRectangle.h"
+#include "PrimitiveArea.h"
+#include "PrimitiveTriangle.h"
 
 Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight)
 {
@@ -54,8 +57,12 @@ void Engine::run()
 	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
 	
 	sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
-	background.setFillColor(this->color);
+	PrimitiveRectangle primitive(sf::Vector2f(50.f,50.f), sf::Vector2f(200.f, 20.f));
+	PrimitiveArea primitiveArea(sf::Vector2f(0.f, 0.f), 25.f);
+	PrimitiveTriangle primit(sf::Vector2f(40.f, 50.f), sf::Vector2f(50.f, 150.f));
 
+
+	background.setFillColor(this->color);
 
 	int fpsInterval = (int)1000 / fps;
 	auto lastFrame = getCurrentTime();
@@ -108,6 +115,7 @@ void Engine::run()
 				beg++;
 			}
 
+			
 		}
 
 		{
@@ -117,13 +125,19 @@ void Engine::run()
 			{
 				MoveableBlock &a = *beg;
 
+			
+
 				a.moveByStoredVector();
 
 				render->draw(a);
 				beg++;
 			}
-
 		}
+
+		//test
+
+		render->draw(primit.getToDraw());
+		render->draw(primitive.getToDraw());
 
 		render->display();
 	}
@@ -137,7 +151,6 @@ bool Engine::isMouseInsideWindow()
 
 
 	Vector2i mousePoss = Mouse::getPosition();
-
 
 
 	return (windowPoss.x <= mousePoss.x && (windowPoss.x + size.x) >= mousePoss.x && windowPoss.y <= mousePoss.y && (windowPoss.y + size.y) >= mousePoss.y);
