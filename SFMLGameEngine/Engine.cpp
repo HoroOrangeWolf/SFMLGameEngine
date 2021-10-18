@@ -154,3 +154,8 @@ Vector2i& Engine::getTrueMousePosition()
 	Vector2i buff = Vector2i(mousePoss.x - possWindow.x, mousePoss.y - possWindow.y);
 	return buff;
 }
+
+void Engine::addDrawable(Drawable& draw)
+{
+	this->toDrawList.push_back(draw);
+}

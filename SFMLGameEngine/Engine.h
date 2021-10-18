@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <list>
+#include "Moveable.h"
 
 using namespace sf;
 
@@ -11,6 +13,8 @@ private:
 	VideoMode mode;
 	std::string windowTitle;
 	RenderWindow *render;
+	std::list<Drawable&> toDrawList;
+	
 	auto getCurrentTime();
 
 public:
@@ -22,6 +26,7 @@ public:
 	void run();
 	bool isMouseInsideWindow();
 	Vector2i &getTrueMousePosition();
+	void addDrawable(Drawable& draw);
 
 
 };
