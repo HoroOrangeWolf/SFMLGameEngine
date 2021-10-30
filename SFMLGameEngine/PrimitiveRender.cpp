@@ -1,13 +1,49 @@
 #include "PrimitiveRender.h"
 
-void PrimitiveRender::fillPrimitive(bool** elements, int width, int height)
+void PrimitiveRender::recuFiller(bool** elements, int x, int y)
 {
-	
+	bool element = elements[x][y];
+	if (element)
+		return;
+
+	elements[x][y] = true;
+
+	recuFiller(elements, x + 1, y);
+	recuFiller(elements, x - 1, y);
+	recuFiller(elements, x, y + 1);
+	recuFiller(elements, x, y - 1);
 }
 
-void PrimitiveRender::recuFiller(bool** elements, int x, int y, int width, int height)
+void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, bool** tab)
 {
+	float xStart = points0.x;
+	float yStart = points0.y;
+
+	float xEnd = points1.x;
+	float yEnd = points1.y;
+
+	if (abs(xStart - xEnd) > abs(yStart - yEnd)) {
+		float m = (yEnd - yStart) / (xEnd - xStart);
+
+		float y = yStart;
+		for (float i = xStart; i <= xEnd; i += 1.f) {
+
+			tab[(int)i][(int)std::round(y)] = true;
+
+			y += m;
+		}
+	}
+	else {
+		float m = abs(xEnd - xStart) / abs(yEnd - yStart);
+
+		float y = xStart;
+		for (float i = yStart; i <= yEnd; i += 1.f) {
+			tab[(int)std::round(y)][(int)i] = true;
+			y += m;
+		}
+	}
 }
+
 
 void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::VertexArray& ar)
 {

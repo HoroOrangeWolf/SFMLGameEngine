@@ -8,18 +8,21 @@ PrimitiveRectangle::PrimitiveRectangle(sf::Vector2f position, sf::Vector2f width
 	this->point1 = sf::Vector2f(position.x + widthHeight.x, position.y);
 	this->point2 = sf::Vector2f(position.x + widthHeight.x, position.y + widthHeight.y);
 	this->point3 = sf::Vector2f(position.x, position.y + widthHeight.y);
-
-	
 }
 
-sf::VertexArray PrimitiveRectangle::getToDraw()
+sf::VertexArray& PrimitiveRectangle::getToDraw()
 {
-	sf::VertexArray ver;
+	if (!isChanged)
+		return arr;
 
-	this->drawLine(point0, point1, ver);
-	this->drawLine(point1, point2, ver);
-	this->drawLine(point3, point2, ver);
-	this->drawLine(point0, point3, ver);
+	arr = sf::VertexArray();
 
-	return ver;
+	isChanged = false;
+
+	this->drawLine(point0, point1, arr);
+	this->drawLine(point1, point2, arr);
+	this->drawLine(point3, point2, arr);
+	this->drawLine(point0, point3, arr);
+
+	return arr;
 }

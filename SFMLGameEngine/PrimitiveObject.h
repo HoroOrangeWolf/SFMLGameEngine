@@ -1,12 +1,14 @@
 #pragma once
 #include "PrimitiveRender.h"
-#include <list>
+#include <vector>
 #include <SFML/Graphics.hpp>
 class PrimitiveObject :
     public PrimitiveRender
 {
 private:
-    std::list<sf::Vector2f> pointList;
-    
+    std::vector<sf::Vector2f> pointList;
+public:
+    PrimitiveObject(std::vector<sf::Vector2f> pointList);
+    sf::VertexArray& getToDraw();
 };
 
