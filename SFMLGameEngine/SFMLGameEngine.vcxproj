@@ -144,19 +144,26 @@
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="KeyAndVector.cpp" />
+    <ClCompile Include="LineSegment.cpp" />
     <ClCompile Include="Moveable.cpp" />
     <ClCompile Include="PrimitiveArea.cpp" />
     <ClCompile Include="PrimitiveRectangle.cpp" />
+    <ClCompile Include="PrimitiveRender.cpp" />
     <ClCompile Include="PrimitiveTriangle.cpp" />
     <ClCompile Include="SFMLGameEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="KeyAndVector.h" />
+    <ClInclude Include="LineSegment.h" />
     <ClInclude Include="Moveable.h" />
     <ClInclude Include="PrimitiveArea.h" />
     <ClInclude Include="PrimitiveRectangle.h" />
+    <ClInclude Include="PrimitiveRender.h" />
     <ClInclude Include="PrimitiveTriangle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SFMLGameEngine.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

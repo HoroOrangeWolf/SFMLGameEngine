@@ -15,6 +15,7 @@ PrimitiveRectangle::PrimitiveRectangle(sf::Vector2f position, sf::Vector2f width
 sf::VertexArray PrimitiveRectangle::getToDraw()
 {
 	sf::VertexArray ver;
+
 	this->drawLine(point0, point1, ver);
 	this->drawLine(point1, point2, ver);
 	this->drawLine(point3, point2, ver);
