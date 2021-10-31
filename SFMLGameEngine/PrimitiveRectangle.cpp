@@ -19,12 +19,14 @@ sf::Sprite& PrimitiveRectangle::getToDraw()
 
 	ims = sf::Image();
 
-	ims.create(point3.x + 1, point3.y + 1, sf::Color::Transparent);
+	ims.create(point2.x + 1, point2.y + 1, sf::Color::Transparent);
 
 	drawLine(point0, point1, ims);
 	drawLine(point1, point2, ims);
 	drawLine(point2, point3, ims);
 	drawLine(point3, point0, ims);
+
+	recuFiller(ims, color, point2.x / 2, point2.y / 2);
 
 	text = sf::Texture();
 

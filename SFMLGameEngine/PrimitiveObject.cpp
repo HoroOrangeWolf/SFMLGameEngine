@@ -24,7 +24,7 @@ sf::Sprite& PrimitiveObject::getToDraw()
 		if (buff.x > width)
 			width = buff.x;
 
-		if (buff.y > width)
+		if (buff.y > height)
 			height = buff.y;
 	}
 
@@ -34,11 +34,11 @@ sf::Sprite& PrimitiveObject::getToDraw()
 		sf::Vector2f& point_1 = pointList[i];
 		sf::Vector2f& point_2 = pointList[i + 1];
 		this->drawLine(point_1, point_2, ims);
-		std::cout << "XD";
 	}
 
-	this->drawLine(pointList[0], pointList[pointList.size() - 1], ims);
+	this->drawLine(pointList[pointList.size()-1], pointList[0], ims);
 
+	evenFiller(ims, color, width + 1, height + 1);
 
 	text = sf::Texture();
 

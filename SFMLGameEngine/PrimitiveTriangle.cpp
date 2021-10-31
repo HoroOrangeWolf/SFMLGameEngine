@@ -19,11 +19,18 @@ sf::Sprite& PrimitiveTriangle::getToDraw()
 
 	ims = sf::Image();
 
-	ims.create(point2.x + 1, point2.y + 1, sf::Color::Transparent);
+	ims.create(point1.x + 1, point1.y + 1, sf::Color::Transparent);
 
 	this->drawLine(point0, point2, ims);
 	this->drawLine(point2, point1, ims);
 	this->drawLine(point0, point1, ims);
+
+	for (int i = 0; i < point1.x; ++i) 
+		if (ims.getPixel(i, (point1.y + 1) / 2) == color && ims.getPixel(i + 1, (point1.y + 1) / 2) == sf::Color::Transparent) {
+			recuFiller(ims, color, i + 1, (point1.y + 1) / 2);
+			break;
+		}
+	
 
 	text = sf::Texture();
 

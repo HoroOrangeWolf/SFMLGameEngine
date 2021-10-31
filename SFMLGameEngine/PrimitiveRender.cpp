@@ -1,17 +1,17 @@
 #include "PrimitiveRender.h"
+#include <iostream>
 
-void PrimitiveRender::recuFiller(bool** elements, int x, int y)
+void PrimitiveRender::recuFiller(sf::Image& image, sf::Color& color, int x, int y)
 {
-	bool element = elements[x][y];
-	if (element)
+	if (image.getPixel(x, y) == color)
 		return;
 
-	elements[x][y] = true;
+	image.setPixel(x, y, color);
 
-	recuFiller(elements, x + 1, y);
-	recuFiller(elements, x - 1, y);
-	recuFiller(elements, x, y + 1);
-	recuFiller(elements, x, y - 1);
+	recuFiller(image, color, x + 1, y);
+	recuFiller(image, color, x - 1, y);
+	recuFiller(image, color, x, y + 1);
+	recuFiller(image, color, x, y - 1);
 }
 
 
@@ -21,35 +21,80 @@ void PrimitiveRender::setPosition(sf::Vector2f position)
 	this->color = sf::Color::Red;
 }
 
+void PrimitiveRender::evenFiller(sf::Image& image, sf::Color& color, int width, int height)
+{
+	for (int y = 0; y < height; y++)
+		for (int x = 0, pars = 0; x < width; x++)
+			if (image.getPixel(x, y) == color)
+				for (x++; x < width; ++x)
+					if (image.getPixel(x, y) == sf::Color::Transparent ) {
+						pars++;
+						if (pars % 2 == 0)
+							break;
+
+						image.setPixel(x, y, color);
+						for (x++; x < width && image.getPixel(x, y) == sf::Color::Transparent; x++)
+							image.setPixel(x, y, color);
+
+						break;
+					}
+
+}
+
 PrimitiveRender::PrimitiveRender()
 {
 	this->position = sf::Vector2f(0.f, 0.f);
 }
 
+void PrimitiveRender::setColor(sf::Color color)
+{
+	this->color = color;
+}
+
 void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Image& ar)
 {
-	float xStart = std::min(points0.x, points1.x);
-	float yStart = std::min(points0.y, points1.y);
+	double xStart = points0.x;
+	double yStart = points0.y;
 
-	float xEnd = std::max(points0.x, points1.x);
-	float yEnd = std::max(points0.y, points1.y);
+	double xEnd = points1.x;
+	double yEnd = points1.y;
+
 
 	if (abs(xStart - xEnd) > abs(yStart - yEnd)) {
-		float m = (yEnd - yStart) / (xEnd - xStart);
 
-		float y = yStart;
-		for (float i = xStart; i <= xEnd; i += 1.f) {
+		if (points0.x > points1.x) {
+			xStart = points1.x;
+			xEnd = points0.x;
+
+			yStart = points1.x;
+			yEnd = points0.y;
+		}
+
+		double m = (yEnd - yStart) / (xEnd - xStart);
+
+		double y = yStart;
+		for (double i = xStart; i <= xEnd; i += 1.f) {
 			ar.setPixel(i, std::round(y), color);
 			y += m;
 		}
 	}
 	else {
-		float m = abs(xEnd - xStart) / abs(yEnd - yStart);
 
-		float y = xStart;
-		for (float i = yStart; i <= yEnd; i += 1.f) {
+		if (points0.y > points1.y) {
+			xStart = points1.x;
+			xEnd = points0.x;
+
+			yStart = points1.x;
+			yEnd = points0.y;
+		}
+
+		double m = (xEnd - xStart) / (yEnd - yStart);
+
+		double y = xStart;
+		for (double i = yStart; i <= yEnd; i += 1.f) {
 
 			ar.setPixel(std::round(y), i, color);
+
 			y += m;
 		}
 	}

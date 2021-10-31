@@ -5,6 +5,8 @@
 #include "PrimitiveArea.h"
 #include "PrimitiveEllipse.h"
 #include "PrimitiveObject.h"
+#include "PrimitiveTriangle.h"
+#include "PrimitiveRectangle.h"
 
 
 Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight)
@@ -59,13 +61,17 @@ void Engine::run()
 	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
 	
 	sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
-	//PrimitiveRectangle primitive(sf::Vector2f(50.f,50.f), sf::Vector2f(200.f, 20.f));
+	PrimitiveRectangle primitive(sf::Vector2f(50.f,50.f), sf::Vector2f(200.f, 20.f));
 	//PrimitiveArea primitiveArea(sf::Vector2f(0.f, 0.f), 25.f);
-	//PrimitiveTriangle primit(sf::Vector2f(40.f, 50.f), sf::Vector2f(50.f, 150.f));
+	PrimitiveTriangle primit(sf::Vector2f(40.f, 50.f), sf::Vector2f(50.f, 150.f));
+	
+	primit.setColor(sf::Color::Red);
+	primitive.setColor(sf::Color::Blue);
+	
 	//PrimitiveEllipse pr(100.f, 50.f);
 	//pr.setPosition(sf::Vector2f(150.f, 150.f));
 	PrimitiveEllipse por(150.f, 50.f);
-	PrimitiveObject obj(std::vector<sf::Vector2f>({sf::Vector2f(0.f,0.f), sf::Vector2f(50.f, 150.f), sf::Vector2f(120.f, 160.f), sf::Vector2f(130.f, 170.f)}));
+	PrimitiveObject obj(std::vector<sf::Vector2f>({ sf::Vector2f(0.f,0.f), sf::Vector2f(250.f, 0.f),sf::Vector2f(230.f, 230.f), sf::Vector2f(125.f, 125.f) ,sf::Vector2f(0.f, 250.f)}));
 
 	obj.setPosition(sf::Vector2f(250.f, 250.f));
 
@@ -158,6 +164,7 @@ void Engine::run()
 		//render->draw(ar, tr);
 		//render->draw(pr.getToDraw());
 		render->draw(obj.getToDraw());
+
 
 		render->display();
 	}
