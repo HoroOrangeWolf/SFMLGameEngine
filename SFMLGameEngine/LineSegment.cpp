@@ -6,11 +6,13 @@ LineSegment::LineSegment(sf::Vector2f point1, sf::Vector2f point2)
 	this->point2 = point2;
 }
 
-sf::VertexArray& LineSegment::getToDraw()
+sf::Sprite& LineSegment::getToDraw()
 {
 	sf::VertexArray buff;
 
-	this->drawLine(point1, point2, buff);
+	this->drawLine(point1, point2, ims);
 
-	return buff;
+	sf::Sprite sp;
+
+	return sp;
 }

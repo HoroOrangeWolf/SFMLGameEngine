@@ -8,6 +8,6 @@ private:
 	float r = 0.f;
 public:
 	PrimitiveArea(sf::Vector2f position, float r);
-	sf::VertexArray& getToDraw();
+	sf::Sprite& getToDraw();
 };
 

@@ -11,51 +11,47 @@ PrimitiveAreaFast::PrimitiveAreaFast(sf::Color color, float r)
     this->color = color;
 }
 
-sf::VertexArray& PrimitiveAreaFast::getToDraw()
+sf::Sprite& PrimitiveAreaFast::getToDraw()
 {
     if (!isChanged)
         return arr;
 
     isChanged = false;
 
-    arr = sf::VertexArray();
+    sf::Image im = sf::Image();
+
+	im.create(r*2 + 1, r*2+1);
 
 	float step = 1.f / this->r;
 
-	float xc = position.x;
-	float yc = position.y;
+	float xc = r;
+	float yc = r;
 
 
 	float value = 0;
 
 	for (; value < (M_PI/2); value += step)
 	{
-		sf::Vertex vertex;
 		double x = (double)r * cos(value) + 0.5;
 		double y = (double)r * sin(value) + 0.5;
 
-		vertex.color = sf::Color::Red;
-		vertex.position = sf::Vector2f((xc + x), yc + y);
+		im.setPixel((xc + x), (yc + y), color);
 
-		arr.append(vertex);
+		im.setPixel((xc - x), (yc + y), color);
 
-		vertex.color = sf::Color::Red;
-		vertex.position = sf::Vector2f((xc - x), (yc + y));
+		im.setPixel((xc + x), (yc - y), color);
 
-		arr.append(vertex);
-
-
-		vertex.color = sf::Color::Red;
-		vertex.position = sf::Vector2f((xc + x), (yc - y));
-
-		arr.append(vertex);
-
-		vertex.color = sf::Color::Red;
-		vertex.position = sf::Vector2f((xc - x), (yc - y));
-
-		arr.append(vertex);
+		im.setPixel((xc - x), (yc - y), color);
 
 	}
+
+	text = sf::Texture();
+
+	text.loadFromImage(ims);
+
+	arr.setTexture(text);
+
+	arr.setPosition(position);
 
 
     return arr;

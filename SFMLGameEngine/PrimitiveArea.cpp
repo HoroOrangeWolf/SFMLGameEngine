@@ -8,20 +8,21 @@ PrimitiveArea::PrimitiveArea(sf::Vector2f position, float r)
 	this->r = r;
 }
 
-sf::VertexArray& PrimitiveArea::getToDraw()
+sf::Sprite& PrimitiveArea::getToDraw()
 {
 	if (!isChanged)
 		return arr;
 
 	isChanged = false;
 
-	arr = sf::VertexArray();
+	ims= sf::Image();
+
+	ims.create(r * 2 + 1, r * 2 + 1, sf::Color::Transparent);
 
 	float step = 1.f / this->r;
 
-	float xc = position.x + r;
-	float yc = position.y + r;
-
+	float xc = r;
+	float yc = r;
 
 	float value = 0;
 
@@ -32,9 +33,16 @@ sf::VertexArray& PrimitiveArea::getToDraw()
 		vertex.color = sf::Color::Red;
 		vertex.position = sf::Vector2f(round(xc + (double)r * cos(value) + 0.5), round(yc + (double)r * sin(value) + 0.5));
 
-		arr.append(vertex);
+		ims.setPixel(vertex.position.x, vertex.position.y, sf::Color::Red);
 	}
 
+	text = sf::Texture();
+
+	text.loadFromImage(ims);
+
+	arr.setTexture(text);
+
+	arr.setPosition(position);
 
 	return arr;
 }

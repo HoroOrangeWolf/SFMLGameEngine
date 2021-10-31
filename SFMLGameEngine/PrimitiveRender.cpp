@@ -14,40 +14,11 @@ void PrimitiveRender::recuFiller(bool** elements, int x, int y)
 	recuFiller(elements, x, y - 1);
 }
 
-void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, bool** tab)
-{
-	float xStart = points0.x;
-	float yStart = points0.y;
-
-	float xEnd = points1.x;
-	float yEnd = points1.y;
-
-	if (abs(xStart - xEnd) > abs(yStart - yEnd)) {
-		float m = (yEnd - yStart) / (xEnd - xStart);
-
-		float y = yStart;
-		for (float i = xStart; i <= xEnd; i += 1.f) {
-
-			tab[(int)i][(int)std::round(y)] = true;
-
-			y += m;
-		}
-	}
-	else {
-		float m = abs(xEnd - xStart) / abs(yEnd - yStart);
-
-		float y = xStart;
-		for (float i = yStart; i <= yEnd; i += 1.f) {
-			tab[(int)std::round(y)][(int)i] = true;
-			y += m;
-		}
-	}
-}
-
 
 void PrimitiveRender::setPosition(sf::Vector2f position)
 {
 	this->position = position;
+	this->color = sf::Color::Red;
 }
 
 PrimitiveRender::PrimitiveRender()
@@ -55,23 +26,20 @@ PrimitiveRender::PrimitiveRender()
 	this->position = sf::Vector2f(0.f, 0.f);
 }
 
-void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::VertexArray& ar)
+void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Image& ar)
 {
-	float xStart = points0.x;
-	float yStart = points0.y;
+	float xStart = std::min(points0.x, points1.x);
+	float yStart = std::min(points0.y, points1.y);
 
-	float xEnd = points1.x;
-	float yEnd = points1.y;
+	float xEnd = std::max(points0.x, points1.x);
+	float yEnd = std::max(points0.y, points1.y);
 
 	if (abs(xStart - xEnd) > abs(yStart - yEnd)) {
 		float m = (yEnd - yStart) / (xEnd - xStart);
 
 		float y = yStart;
 		for (float i = xStart; i <= xEnd; i += 1.f) {
-			sf::Vertex vertex1;
-			vertex1.position = sf::Vector2f(i, std::round(y));
-			vertex1.color = sf::Color::Red;
-			ar.append(vertex1);
+			ar.setPixel(i, std::round(y), color);
 			y += m;
 		}
 	}
@@ -80,10 +48,8 @@ void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::V
 
 		float y = xStart;
 		for (float i = yStart; i <= yEnd; i += 1.f) {
-			sf::Vertex vertex1;
-			vertex1.position = sf::Vector2f(std::round(y), i);
-			vertex1.color = sf::Color::Red;
-			ar.append(vertex1);
+
+			ar.setPixel(std::round(y), i, color);
 			y += m;
 		}
 	}

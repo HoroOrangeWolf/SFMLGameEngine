@@ -7,7 +7,7 @@ private:
     double Rx, Ry;
 public:
     PrimitiveEllipse(double Rx, double Ry);
-    sf::VertexArray& getToDraw();
+    sf::Sprite& getToDraw();
 
 };
 

@@ -12,6 +12,6 @@ private:
 public:
     PrimitiveAreaFast(float r);
     PrimitiveAreaFast(sf::Color color, float r);
-    sf::VertexArray& getToDraw();
+    sf::Sprite& getToDraw();
 };
 
