@@ -26,18 +26,19 @@ void PrimitiveRender::evenFiller(sf::Image& image, sf::Color& color, int width, 
 	for (int y = 0; y < height; y++)
 		for (int x = 0, pars = 0; x < width; x++)
 			if (image.getPixel(x, y) == color)
-				for (x++; x < width; ++x)
-					if (image.getPixel(x, y) == sf::Color::Transparent ) {
-						pars++;
-						if (pars % 2 == 0)
-							break;
+			{
+				pars++;
+				for (x+=1; x < width && image.getPixel(x, y) == color; ++x);
 
+				for (; x < width && image.getPixel(x, y) == sf::Color::Transparent; ++x)
+					if(pars%2==1)
 						image.setPixel(x, y, color);
-						for (x++; x < width && image.getPixel(x, y) == sf::Color::Transparent; x++)
-							image.setPixel(x, y, color);
 
-						break;
-					}
+				for (; x < width && image.getPixel(x, y) == color; ++x);
+
+				pars++;
+
+			}
 
 }
 
