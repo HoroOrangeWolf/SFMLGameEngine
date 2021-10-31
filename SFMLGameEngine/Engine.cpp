@@ -4,6 +4,8 @@
 #include "PrimitiveRectangle.h"
 #include "PrimitiveArea.h"
 #include "PrimitiveTriangle.h"
+#include "PrimitiveAreaFast.h"
+#include "PrimitiveEllipse.h"
 
 Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight)
 {
@@ -60,7 +62,10 @@ void Engine::run()
 	PrimitiveRectangle primitive(sf::Vector2f(50.f,50.f), sf::Vector2f(200.f, 20.f));
 	PrimitiveArea primitiveArea(sf::Vector2f(0.f, 0.f), 25.f);
 	PrimitiveTriangle primit(sf::Vector2f(40.f, 50.f), sf::Vector2f(50.f, 150.f));
+	PrimitiveEllipse pr(100.f, 50.f);
 
+
+	pr.setPosition(sf::Vector2f(150.f, 150.f));
 
 	background.setFillColor(this->color);
 
@@ -136,9 +141,18 @@ void Engine::run()
 
 		//test
 
-		render->draw(primit.getToDraw());
-		render->draw(primitive.getToDraw());
 
+		sf::VertexArray& ar = primit.getToDraw();
+
+		sf::Transform tr;
+
+		tr.scale(0.85f, 0.85f);
+		tr.rotate(-50.f);
+
+		std::cout << ar.getVertexCount() << '\n';
+
+		render->draw(ar, tr);
+		render->draw(pr.getToDraw());
 		render->display();
 	}
 

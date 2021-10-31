@@ -1,15 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "PrimitiveRender.h"
 
-
-class PrimitiveArea
+class PrimitiveArea: public PrimitiveRender
 {
 private:
-	sf::Vector2f position;
 	float r = 0.f;
-
 public:
 	PrimitiveArea(sf::Vector2f position, float r);
-	sf::VertexArray getToDraw();
+	sf::VertexArray& getToDraw();
 };
 

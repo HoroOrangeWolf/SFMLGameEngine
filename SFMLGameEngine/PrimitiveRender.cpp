@@ -45,6 +45,16 @@ void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, bool*
 }
 
 
+void PrimitiveRender::setPosition(sf::Vector2f position)
+{
+	this->position = position;
+}
+
+PrimitiveRender::PrimitiveRender()
+{
+	this->position = sf::Vector2f(0.f, 0.f);
+}
+
 void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::VertexArray& ar)
 {
 	float xStart = points0.x;

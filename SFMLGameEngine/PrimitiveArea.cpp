@@ -1,7 +1,6 @@
 #include "PrimitiveArea.h"
 #include <cmath>
 
-#define M_PI 3.14159265358979323846
 
 PrimitiveArea::PrimitiveArea(sf::Vector2f position, float r)
 {
@@ -9,9 +8,14 @@ PrimitiveArea::PrimitiveArea(sf::Vector2f position, float r)
 	this->r = r;
 }
 
-sf::VertexArray PrimitiveArea::getToDraw()
+sf::VertexArray& PrimitiveArea::getToDraw()
 {
-	sf::VertexArray array;
+	if (!isChanged)
+		return arr;
+
+	isChanged = false;
+
+	arr = sf::VertexArray();
 
 	float step = 1.f / this->r;
 
@@ -28,9 +32,9 @@ sf::VertexArray PrimitiveArea::getToDraw()
 		vertex.color = sf::Color::Red;
 		vertex.position = sf::Vector2f(round(xc + (double)r * cos(value) + 0.5), round(yc + (double)r * sin(value) + 0.5));
 
-		array.append(vertex);
+		arr.append(vertex);
 	}
 
 
-	return array;
+	return arr;
 }

@@ -15,7 +15,7 @@ sf::VertexArray& PrimitiveTriangle::getToDraw()
 	if (!isChanged)
 		return arr;
 
-	arr = sf::VertexArray();
+	arr = sf::VertexArray(sf::Quads, 4);
 
 	this->arr = sf::VertexArray();
 
