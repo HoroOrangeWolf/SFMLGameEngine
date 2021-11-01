@@ -24,15 +24,26 @@ void PrimitiveRender::setPosition(sf::Vector2f position)
 void PrimitiveRender::evenFiller(sf::Image& image, sf::Color& color, int width, int height)
 {
 	for (int y = 0; y < height; y++)
-		for (int x = 0, pars = 0; x < width; x++)
+		for (int x = 0, pars = 0, xBuff; x < width; x++)
 			if (image.getPixel(x, y) == color)
 			{
 				pars++;
 				for (x+=1; x < width && image.getPixel(x, y) == color; ++x);
 
-				for (; x < width && image.getPixel(x, y) == sf::Color::Transparent; ++x)
-					if(pars%2==1)
+				if (pars % 2 == 1) {
+
+					xBuff = x;
+
+					for (; xBuff < width && image.getPixel(xBuff, y) == sf::Color::Transparent; ++xBuff);
+
+					if (xBuff == width)
+						break;
+
+					for (; x < width && image.getPixel(x, y) == sf::Color::Transparent; ++x)
 						image.setPixel(x, y, color);
+				}
+				else
+					for (; x < width && image.getPixel(x, y) == sf::Color::Transparent; ++x);
 
 				for (; x < width && image.getPixel(x, y) == color; ++x);
 
