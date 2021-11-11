@@ -34,3 +34,18 @@ void LineSegment::getToDraw(sf::RenderWindow* window)
 
 	window->draw(arr);
 }
+
+void LineSegment::translate(sf::Vector2f moveBy)
+{
+	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
+}
+
+void LineSegment::scale(float k)
+{
+	point2 = sf::Vector2f(point2.x * k, point2.y * k);
+}
+
+void LineSegment::rotate(float rotation)
+{
+	point2 = sf::Vector2f(point2.x * std::cos(rotation) - point2.y * std::sin(rotation), point2.x * std::sin(rotation) + point2.y * std::cos(rotation));
+}

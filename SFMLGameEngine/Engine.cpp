@@ -7,6 +7,7 @@
 #include "PrimitiveObject.h"
 #include "PrimitiveTriangle.h"
 #include "PrimitiveRectangle.h"
+#include "Player.h"
 
 
 Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight)
@@ -61,10 +62,20 @@ void Engine::run()
 	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
 	
 	sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
-	PrimitiveRectangle primitive(sf::Vector2f(250.f,250.f), sf::Vector2f(200.f, 20.f));
-	primitive.rotate(55.f);
+	PrimitiveRectangle primitive(sf::Vector2f(5.f,5.f), sf::Vector2f(200.f, 400.f));
+	//primitive.rotate(55.f);
 	//PrimitiveArea primitiveArea(sf::Vector2f(0.f, 0.f), 25.f);
 	PrimitiveTriangle primit(sf::Vector2f(250.f, 250.f), sf::Vector2f(50.f, 150.f));
+	Player player(sf::Vector2f(150.f, 150.f));
+
+	player.addKeyAndStore(KeyAndVector(sf::Vector2f(0.f, -1.f), sf::Keyboard::W));
+	player.addKeyAndStore(KeyAndVector(sf::Vector2f(-1.f, 0.f), sf::Keyboard::A));
+	player.addKeyAndStore(KeyAndVector(sf::Vector2f(0.f, 1.f), sf::Keyboard::S));
+	player.addKeyAndStore(KeyAndVector(sf::Vector2f(1.f, 0.f), sf::Keyboard::D));
+
+	player.setColor(sf::Color::Blue);
+	player.setPosition(sf::Vector2f(5.f, 5.f));
+
 	primit.rotate(48.f);
 	
 	primit.setColor(sf::Color::Red);
@@ -118,44 +129,17 @@ void Engine::run()
 
 			lastposs = currentPosition;
 		}
+
+		player.update();
 		
 		render->clear();
 		render->draw(background);
 
-		{
-			std::list<MoveableBlock>::iterator beg = this->constantBlocks.begin();
-
-			while (beg != this->constantBlocks.end())
-			{
-				MoveableBlock& a = *beg;
-
-				render->draw(a);
-				beg++;
-			}
-
-			
-		}
-
-		{
-			std::list<MoveableBlock>::iterator beg = this->toMoveList.begin();
-
-			while (beg != this->toMoveList.end())
-			{
-				MoveableBlock &a = *beg;
-
-			
-
-				a.moveByStoredVector();
-
-				render->draw(a);
-				beg++;
-			}
-		}
-
 		//test
 		//obj.getToDraw(render);
-		primit.getToDraw(render);
+		//primit.getToDraw(render);
 		//primitive.getToDraw(render);
+		player.getToDraw(render);
 
 		render->display();
 	}
@@ -182,17 +166,4 @@ Vector2i& Engine::getTrueMousePosition()
 
 	Vector2i buff = Vector2i(mousePoss.x - possWindow.x, mousePoss.y - possWindow.y);
 	return buff;
-}
-
-void Engine::addConstantBlock(MoveableBlock& constant)
-{
-	this->constantBlocks.push_back(constant);
-}
-
-
-
-
-void Engine::addMoveableBlock(MoveableBlock& move)
-{
-	this->toMoveList.push_back(move);
 }

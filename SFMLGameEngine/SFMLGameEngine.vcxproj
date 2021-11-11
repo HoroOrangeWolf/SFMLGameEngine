@@ -123,6 +123,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>40194304</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -145,30 +146,32 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="KeyAndVector.cpp" />
     <ClCompile Include="LineSegment.cpp" />
-    <ClCompile Include="Moveable.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PrimitiveArea.cpp" />
     <ClCompile Include="PrimitiveAreaFast.cpp" />
     <ClCompile Include="PrimitiveEllipse.cpp" />
     <ClCompile Include="PrimitiveObject.cpp" />
     <ClCompile Include="PrimitiveRectangle.cpp" />
-    <ClCompile Include="PrimitiveRender.cpp" />
+    <ClCompile Include="DrawableObject.cpp" />
     <ClCompile Include="PrimitiveTriangle.cpp" />
     <ClCompile Include="SFMLGameEngine.cpp" />
     <ClCompile Include="TransformableObject.cpp" />
+    <ClCompile Include="UpdateableObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="KeyAndVector.h" />
     <ClInclude Include="LineSegment.h" />
-    <ClInclude Include="Moveable.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PrimitiveArea.h" />
     <ClInclude Include="PrimitiveAreaFast.h" />
     <ClInclude Include="PrimitiveEllipse.h" />
     <ClInclude Include="PrimitiveObject.h" />
     <ClInclude Include="PrimitiveRectangle.h" />
-    <ClInclude Include="PrimitiveRender.h" />
+    <ClInclude Include="DrawableObject.h" />
     <ClInclude Include="PrimitiveTriangle.h" />
     <ClInclude Include="TransformableObject.h" />
+    <ClInclude Include="UpdateableObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLGameEngine.rc" />
