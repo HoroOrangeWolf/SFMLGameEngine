@@ -21,6 +21,6 @@ public:
 	sf::Sprite arr;
 	void drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Image& ar);
 	void setColor(sf::Color color);
-	virtual sf::Sprite& getToDraw() = 0;
+	virtual void getToDraw(sf::RenderWindow *window) = 0;
 };
 

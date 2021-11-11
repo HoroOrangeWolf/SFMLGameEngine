@@ -6,10 +6,13 @@ PrimitiveEllipse::PrimitiveEllipse(double Rx, double Ry) {
 	this->Ry = Ry;
 }
 
-sf::Sprite& PrimitiveEllipse::getToDraw()
+void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
-		return arr;
+	{
+		window->draw(arr);
+		return;
+	}
 
 	isChanged = false;
 
@@ -52,5 +55,5 @@ sf::Sprite& PrimitiveEllipse::getToDraw()
 
 	arr.setPosition(position);
 
-	return arr;
+	window->draw(arr);
 }

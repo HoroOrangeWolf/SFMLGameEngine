@@ -10,6 +10,6 @@ private:
     std::vector<sf::Vector2f> pointList;
 public:
     PrimitiveObject(std::vector<sf::Vector2f> pointList);
-    sf::Sprite& getToDraw();
+    void getToDraw(sf::RenderWindow* window);
 };
 

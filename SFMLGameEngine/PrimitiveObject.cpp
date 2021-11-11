@@ -6,10 +6,13 @@ PrimitiveObject::PrimitiveObject(std::vector<sf::Vector2f> pointList)
 	this->pointList = pointList;
 }
 
-sf::Sprite& PrimitiveObject::getToDraw()
+void PrimitiveObject::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
-		return arr;
+	{
+		window->draw(arr);
+		return;
+	}
 
 	isChanged = false;
 
@@ -49,5 +52,5 @@ sf::Sprite& PrimitiveObject::getToDraw()
 	arr.setPosition(position);
 
 
-	return arr;
+	window->draw(arr);
 }

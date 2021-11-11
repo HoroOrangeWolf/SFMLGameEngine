@@ -12,6 +12,6 @@ private:
 public:
     PrimitiveAreaFast(float r);
     PrimitiveAreaFast(sf::Color color, float r);
-    sf::Sprite& getToDraw();
+    void getToDraw(sf::RenderWindow* window);
 };
 

@@ -8,16 +8,19 @@ PrimitiveArea::PrimitiveArea(sf::Vector2f position, float r)
 	this->r = r;
 }
 
-sf::Sprite& PrimitiveArea::getToDraw()
+void PrimitiveArea::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
-		return arr;
+	{
+		window->draw(arr);
+		return;
+	}
 
 	isChanged = false;
 
 	ims= sf::Image();
 
-	ims.create(r * 2 + 1, r * 2 + 1, sf::Color::Transparent);
+	ims.create(window->getSize().x, window->getSize().y, sf::Color::Transparent);
 
 	float step = 1.f / this->r;
 
@@ -33,7 +36,7 @@ sf::Sprite& PrimitiveArea::getToDraw()
 		vertex.color = sf::Color::Red;
 		vertex.position = sf::Vector2f(round(xc + (double)r * cos(value) + 0.5), round(yc + (double)r * sin(value) + 0.5));
 
-		ims.setPixel(vertex.position.x, vertex.position.y, sf::Color::Red);
+		ims.setPixel(vertex.position.x + position.x, vertex.position.y + position.y, sf::Color::Red);
 	}
 
 	text = sf::Texture();
@@ -42,7 +45,7 @@ sf::Sprite& PrimitiveArea::getToDraw()
 
 	arr.setTexture(text);
 
-	arr.setPosition(position);
+	arr.setPosition(sf::Vector2f(0.f, 0.f));
 
-	return arr;
+	window->draw(arr);
 }
