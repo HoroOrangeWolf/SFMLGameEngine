@@ -39,6 +39,8 @@ void PrimitiveArea::getToDraw(sf::RenderWindow* window)
 		ims.setPixel(vertex.position.x + position.x, vertex.position.y + position.y, sf::Color::Red);
 	}
 
+	recuFiller(ims, color, (int)xc, (int)yc);
+
 	text = sf::Texture();
 
 	text.loadFromImage(ims);
@@ -49,3 +51,22 @@ void PrimitiveArea::getToDraw(sf::RenderWindow* window)
 
 	window->draw(arr);
 }
+
+void PrimitiveArea::translate(sf::Vector2f moveBy)
+{
+	isChanged = true;
+	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
+}
+
+void PrimitiveArea::scale(float k)
+{
+	isChanged = true;
+	r = std::abs(r * k);
+}
+
+void PrimitiveArea::rotate(float rotation)
+{
+}
+
+
+

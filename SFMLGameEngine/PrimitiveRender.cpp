@@ -100,7 +100,7 @@ void DrawableObject::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Im
 			xStart = points1.x;
 			xEnd = points0.x;
 
-			yStart = points1.x;
+			yStart = points1.y;
 			yEnd = points0.y;
 		}
 

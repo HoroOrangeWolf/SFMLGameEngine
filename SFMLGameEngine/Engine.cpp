@@ -61,9 +61,11 @@ void Engine::run()
 	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
 	
 	sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
-	PrimitiveRectangle primitive(sf::Vector2f(50.f,50.f), sf::Vector2f(200.f, 20.f));
+	PrimitiveRectangle primitive(sf::Vector2f(250.f,250.f), sf::Vector2f(200.f, 20.f));
+	primitive.rotate(55.f);
 	//PrimitiveArea primitiveArea(sf::Vector2f(0.f, 0.f), 25.f);
-	PrimitiveTriangle primit(sf::Vector2f(40.f, 50.f), sf::Vector2f(50.f, 150.f));
+	PrimitiveTriangle primit(sf::Vector2f(250.f, 250.f), sf::Vector2f(50.f, 150.f));
+	primit.rotate(48.f);
 	
 	primit.setColor(sf::Color::Red);
 	primitive.setColor(sf::Color::Red);
@@ -74,6 +76,7 @@ void Engine::run()
 	PrimitiveObject obj(std::vector<sf::Vector2f>({ sf::Vector2f(0.f,0.f), sf::Vector2f(250.f, 0.f),sf::Vector2f(230.f, 230.f), sf::Vector2f(125.f, 125.f) ,sf::Vector2f(0.f, 250.f)}));
 
 	obj.setPosition(sf::Vector2f(250.f, 250.f));
+	obj.rotate(48.f);
 
 	
 
@@ -150,8 +153,9 @@ void Engine::run()
 		}
 
 		//test
-
-		primitive.getToDraw(render);
+		//obj.getToDraw(render);
+		primit.getToDraw(render);
+		//primitive.getToDraw(render);
 
 		render->display();
 	}

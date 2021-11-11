@@ -13,5 +13,8 @@ public:
     PrimitiveAreaFast(float r);
     PrimitiveAreaFast(sf::Color color, float r);
     void getToDraw(sf::RenderWindow* window);
+    void translate(sf::Vector2f moveBy);
+    void scale(float k);
+    void rotate(float rotation);
 };
 
