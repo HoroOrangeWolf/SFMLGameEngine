@@ -1,7 +1,8 @@
 #include "PrimitiveRender.h"
 #include <iostream>
 
-void PrimitiveRender::recuFiller(sf::Image& image, sf::Color& color, int x, int y)
+
+void DrawableObject::recuFiller(sf::Image& image, sf::Color& color, int x, int y)
 {
 	if (image.getPixel(x, y) == color)
 		return;
@@ -15,13 +16,13 @@ void PrimitiveRender::recuFiller(sf::Image& image, sf::Color& color, int x, int 
 }
 
 
-void PrimitiveRender::setPosition(sf::Vector2f position)
+void DrawableObject::setPosition(sf::Vector2f position)
 {
 	this->position = position;
 	this->color = sf::Color::Red;
 }
 
-void PrimitiveRender::evenFiller(sf::Image& image, sf::Color& color, int width, int height)
+void DrawableObject::evenFiller(sf::Image& image, sf::Color& color, int width, int height)
 {
 	for (int y = 0; y < height; y++)
 		for (int x = 0, pars = 0, xBuff; x < width; x++)
@@ -53,17 +54,17 @@ void PrimitiveRender::evenFiller(sf::Image& image, sf::Color& color, int width, 
 
 }
 
-PrimitiveRender::PrimitiveRender()
+DrawableObject::DrawableObject()
 {
 	this->position = sf::Vector2f(0.f, 0.f);
 }
 
-void PrimitiveRender::setColor(sf::Color color)
+void DrawableObject::setColor(sf::Color color)
 {
 	this->color = color;
 }
 
-void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Image& ar)
+void DrawableObject::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Image& ar)
 {
 	double xStart = points0.x;
 	double yStart = points0.y;
@@ -74,11 +75,14 @@ void PrimitiveRender::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::I
 
 	if (abs(xStart - xEnd) > abs(yStart - yEnd)) {
 
+		
+	
+ 
 		if (points0.x > points1.x) {
 			xStart = points1.x;
 			xEnd = points0.x;
 
-			yStart = points1.x;
+			yStart = points1.y;
 			yEnd = points0.y;
 		}
 

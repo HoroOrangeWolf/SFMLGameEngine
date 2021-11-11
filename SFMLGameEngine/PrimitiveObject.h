@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 class PrimitiveObject :
-    public PrimitiveRender
+    public DrawableObject
 {
 private:
     std::vector<sf::Vector2f> pointList;

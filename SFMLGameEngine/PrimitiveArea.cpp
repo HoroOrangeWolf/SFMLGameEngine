@@ -24,8 +24,8 @@ void PrimitiveArea::getToDraw(sf::RenderWindow* window)
 
 	float step = 1.f / this->r;
 
-	float xc = r;
-	float yc = r;
+	float xc = r + position.x;
+	float yc = r + position.y;
 
 	float value = 0;
 

@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 class LineSegment :
-    public PrimitiveRender
+    public DrawableObject
 {
 private:
     sf::Vector2f point1, point2;

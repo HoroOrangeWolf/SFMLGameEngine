@@ -20,12 +20,12 @@ void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 
 	ims = sf::Image();
 
-	ims.create(Rx * 2 + 1, Ry * 2 + 1, sf::Color::Transparent);
+	ims.create(window->getSize().x,  window->getSize().y, sf::Color::Transparent);
 
 	float step = 1.f / std::max(this->Rx, this->Ry);
 
-	float xc = Rx;
-	float yc = Ry;
+	float xc = Rx + position.x;
+	float yc = Ry + position.y;
 
 
 	float value = 0;
@@ -53,7 +53,7 @@ void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 
 	arr.setTexture(text);
 
-	arr.setPosition(position);
+	arr.setPosition(sf::Vector2f(0.f, 0.f));
 
 	window->draw(arr);
 }

@@ -36,10 +36,12 @@ void PrimitiveObject::getToDraw(sf::RenderWindow* window)
 	for (int i = 0; i < pointList.size() - 1; ++i) {
 		sf::Vector2f& point_1 = pointList[i];
 		sf::Vector2f& point_2 = pointList[i + 1];
-		this->drawLine(point_1, point_2, ims);
+		this->drawLine(sf::Vector2f(point_1.x + position.x, point_1.y + position.y), sf::Vector2f(point_2.x + position.x, point_2.y + position.y), ims);
 	}
+	sf::Vector2f& point_1 = pointList[pointList.size() - 1];
+	sf::Vector2f& point_2 = pointList[0];
 
-	this->drawLine(pointList[pointList.size()-1], pointList[0], ims);
+	this->drawLine(sf::Vector2f(point_1.x + position.x, point_1.y + position.y), sf::Vector2f(point_2.x + position.x, point_2.y + position.y), ims);
 
 	evenFiller(ims, color, width + 1, height + 1);
 
@@ -49,7 +51,7 @@ void PrimitiveObject::getToDraw(sf::RenderWindow* window)
 
 	arr.setTexture(text);
 
-	arr.setPosition(position);
+	arr.setPosition(sf::Vector2f(0.f, 0.f));
 
 
 	window->draw(arr);

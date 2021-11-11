@@ -22,11 +22,11 @@ void PrimitiveTriangle::getToDraw(sf::RenderWindow* window)
 
 	ims = sf::Image();
 
-	ims.create(point1.x + 1, point1.y + 1, sf::Color::Transparent);
+	ims.create(window->getSize().x, window->getSize().y, sf::Color::Transparent);
 
-	this->drawLine(point0, point2, ims);
-	this->drawLine(point2, point1, ims);
-	this->drawLine(point0, point1, ims);
+	drawLine(sf::Vector2f(point0.x + position.x, point0.y + position.y), sf::Vector2f(point1.x + position.x, point1.y + position.y), ims);
+	drawLine(sf::Vector2f(point1.x + position.x, point1.y + position.y), sf::Vector2f(point2.x + position.x, point2.y + position.y), ims);
+	drawLine(sf::Vector2f(point2.x + position.x, point2.y + position.y), sf::Vector2f(point0.x + position.x, point0.y + position.y), ims);
 
 	for (int i = 0; i < point1.x; ++i) 
 		if (ims.getPixel(i, (point1.y + 1) / 2) == color && ims.getPixel(i + 1, (point1.y + 1) / 2) == sf::Color::Transparent) {

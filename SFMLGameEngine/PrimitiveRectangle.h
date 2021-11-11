@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "PrimitiveRender.h"
 
-class PrimitiveRectangle: public PrimitiveRender
+class PrimitiveRectangle: public DrawableObject
 {
 private:
 	sf::Vector2f point0, point1, point2, point3;

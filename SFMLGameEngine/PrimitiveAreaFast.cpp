@@ -27,8 +27,8 @@ void PrimitiveAreaFast::getToDraw(sf::RenderWindow* window)
 
 	float step = 1.f / this->r;
 
-	float xc = r;
-	float yc = r;
+	float xc = r + position.x;
+	float yc = r + position.y;
 
 
 	float value = 0;
@@ -54,8 +54,7 @@ void PrimitiveAreaFast::getToDraw(sf::RenderWindow* window)
 
 	arr.setTexture(text);
 
-	arr.setPosition(position);
-
+	arr.setPosition(sf::Vector2f(0.f, 0.f));
 
 	window->draw(arr);
 }
