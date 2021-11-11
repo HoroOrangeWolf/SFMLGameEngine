@@ -48,6 +48,8 @@ void PrimitiveAreaFast::getToDraw(sf::RenderWindow* window)
 
 	}
 
+	recuFiller(ims, color, (int)xc, (int)yc);
+
 	text = sf::Texture();
 
 	text.loadFromImage(ims);
@@ -58,3 +60,20 @@ void PrimitiveAreaFast::getToDraw(sf::RenderWindow* window)
 
 	window->draw(arr);
 }
+
+void PrimitiveAreaFast::translate(sf::Vector2f moveBy)
+{
+	isChanged = true;
+	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
+}
+
+void PrimitiveAreaFast::scale(float k)
+{
+	isChanged = true;
+	r = std::abs(k * r);
+}
+
+void PrimitiveAreaFast::rotate(float rotation)
+{
+}
+

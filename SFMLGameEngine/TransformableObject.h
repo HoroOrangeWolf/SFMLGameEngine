@@ -1,10 +1,13 @@
 #pragma once
+
+#include <SFML/Window.hpp>
+
 class TransformableObject
 {
 public:
-	virtual void translate() = 0;
-	virtual void rotate() = 0;
-	virtual void scale() = 0;
+	virtual void translate(sf::Vector2f moveBy) = 0;
+	virtual void rotate(float rotation) = 0;
+	virtual void scale(float k) = 0;
 
 };
 

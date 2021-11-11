@@ -29,7 +29,7 @@ void PrimitiveRectangle::getToDraw(sf::RenderWindow* window)
 	drawLine(sf::Vector2f(point2.x + position.x, point2.y + position.y), sf::Vector2f(point3.x + position.x, point3.y + position.y), ims);
 	drawLine(sf::Vector2f(point3.x + position.x, point3.y + position.y), sf::Vector2f(point0.x + position.x, point0.y + position.y), ims);
 
-	
+	recuFiller(ims, color, (point0.x + point2.x)/2 + position.x, (point0.y + point2.y)/2 + position.y);
 
 	text = sf::Texture();
 
@@ -41,4 +41,28 @@ void PrimitiveRectangle::getToDraw(sf::RenderWindow* window)
 
 
 	window->draw(arr);
+}
+
+void PrimitiveRectangle::translate(sf::Vector2f moveBy)
+{
+	isChanged = true;
+	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
+}
+
+void PrimitiveRectangle::scale(float k)
+{
+	isChanged = true;
+	point1 = sf::Vector2f(point1.x * k, point1.y * k);
+	point2 = sf::Vector2f(point2.x * k, point2.y * k);
+	point3 = sf::Vector2f(point3.x * k, point3.y * k);
+}
+
+void PrimitiveRectangle::rotate(float rotation)
+{
+	isChanged = true;
+	rotation = rotation * (M_PI / 180);
+	point1 = sf::Vector2f(point1.x * std::cos(rotation) - point1.y * std::sin(rotation), point1.x * std::sin(rotation) + point1.y * std::cos(rotation));
+	point2 = sf::Vector2f(point2.x * std::cos(rotation) - point2.y * std::sin(rotation), point2.x * std::sin(rotation) + point2.y * std::cos(rotation));
+	point3 = sf::Vector2f(point3.x * std::cos(rotation) - point3.y * std::sin(rotation), point3.x * std::sin(rotation) + point3.y * std::cos(rotation));
+
 }

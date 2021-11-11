@@ -47,6 +47,8 @@ void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 
 	}
 
+	recuFiller(ims, color, (int)xc, (int)yc);
+
 	text = sf::Texture();
 
 	text.loadFromImage(ims);
@@ -57,3 +59,22 @@ void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 
 	window->draw(arr);
 }
+
+void PrimitiveEllipse::translate(sf::Vector2f moveBy)
+{
+	isChanged = true;
+	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
+}
+
+void PrimitiveEllipse::scale(float k)
+{
+	isChanged = true;
+	Rx = std::abs(Rx * k);
+	Ry = std::abs(Ry * k);
+}
+
+void PrimitiveEllipse::rotate(float rotation)
+{
+	// TODO: IDK
+}
+
