@@ -11,16 +11,19 @@ PrimitiveAreaFast::PrimitiveAreaFast(sf::Color color, float r)
     this->color = color;
 }
 
-sf::Sprite& PrimitiveAreaFast::getToDraw()
+void PrimitiveAreaFast::getToDraw(sf::RenderWindow* window)
 {
-    if (!isChanged)
-        return arr;
+	if (!isChanged)
+	{
+		window->draw(arr);
+		return;
+	}
 
     isChanged = false;
 
     sf::Image im = sf::Image();
 
-	im.create(r*2 + 1, r*2+1);
+	im.create(window->getSize().x, window->getSize().y);
 
 	float step = 1.f / this->r;
 
@@ -54,6 +57,5 @@ sf::Sprite& PrimitiveAreaFast::getToDraw()
 	arr.setPosition(position);
 
 
-    return arr;
-
+	window->draw(arr);
 }

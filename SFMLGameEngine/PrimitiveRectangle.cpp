@@ -10,16 +10,19 @@ PrimitiveRectangle::PrimitiveRectangle(sf::Vector2f position, sf::Vector2f width
 	this->point3 = sf::Vector2f(0, widthHeight.y);
 }
 
-sf::Sprite& PrimitiveRectangle::getToDraw()
+void PrimitiveRectangle::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
-		return arr;
+	{
+		window->draw(arr);
+		return;
+	}
 
 	isChanged = false;
 
 	ims = sf::Image();
 
-	ims.create(point2.x + 1, point2.y + 1, sf::Color::Transparent);
+	ims.create(window->getSize().x, window->getSize().y, sf::Color::Transparent);
 
 	drawLine(point0, point1, ims);
 	drawLine(point1, point2, ims);
@@ -37,5 +40,5 @@ sf::Sprite& PrimitiveRectangle::getToDraw()
 	arr.setPosition(position);
 
 
-	return arr;
+	window->draw(arr);
 }

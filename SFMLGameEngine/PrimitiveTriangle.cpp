@@ -10,10 +10,13 @@ PrimitiveTriangle::PrimitiveTriangle(sf::Vector2f position, sf::Vector2f widthHe
 	this->point2 = sf::Vector2f(0.f, widthHeight.y);
 }
 
-sf::Sprite& PrimitiveTriangle::getToDraw()
+void PrimitiveTriangle::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
-		return arr;
+	{
+		window->draw(arr);
+		return;
+	}
 
 	isChanged = false;
 
@@ -41,5 +44,5 @@ sf::Sprite& PrimitiveTriangle::getToDraw()
 	arr.setPosition(position);
 
 
-	return arr;
+	window->draw(arr);
 }

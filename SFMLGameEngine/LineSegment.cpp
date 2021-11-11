@@ -6,7 +6,7 @@ LineSegment::LineSegment(sf::Vector2f point1, sf::Vector2f point2)
 	this->point2 = point2;
 }
 
-sf::Sprite& LineSegment::getToDraw()
+void LineSegment::getToDraw(sf::RenderWindow* window)
 {
 	sf::VertexArray buff;
 
@@ -14,5 +14,5 @@ sf::Sprite& LineSegment::getToDraw()
 
 	sf::Sprite sp;
 
-	return sp;
+	window->draw(sp);
 }

@@ -163,8 +163,7 @@ void Engine::run()
 
 		//render->draw(ar, tr);
 		//render->draw(pr.getToDraw());
-		render->draw(obj.getToDraw());
-
+		primitive.getToDraw(render);
 
 		render->display();
 	}
