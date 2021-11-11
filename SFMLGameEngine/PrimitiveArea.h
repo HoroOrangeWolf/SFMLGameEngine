@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "PrimitiveRender.h"
 
-class PrimitiveArea: public PrimitiveRender
+class PrimitiveArea: public DrawableObject
 {
 private:
 	float r = 0.f;

@@ -66,7 +66,7 @@ void Engine::run()
 	PrimitiveTriangle primit(sf::Vector2f(40.f, 50.f), sf::Vector2f(50.f, 150.f));
 	
 	primit.setColor(sf::Color::Red);
-	primitive.setColor(sf::Color::Blue);
+	primitive.setColor(sf::Color::Red);
 	
 	//PrimitiveEllipse pr(100.f, 50.f);
 	//pr.setPosition(sf::Vector2f(150.f, 150.f));
@@ -151,18 +151,6 @@ void Engine::run()
 
 		//test
 
-
-		//sf::VertexArray& ar = primit.getToDraw();
-
-		sf::Transform tr;
-
-		tr.scale(0.85f, 0.85f);
-		tr.rotate(-50.f);
-
-		//std::cout << ar.getVertexCount() << '\n';
-
-		//render->draw(ar, tr);
-		//render->draw(pr.getToDraw());
 		primitive.getToDraw(render);
 
 		render->display();

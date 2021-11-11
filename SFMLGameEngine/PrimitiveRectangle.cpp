@@ -7,7 +7,7 @@ PrimitiveRectangle::PrimitiveRectangle(sf::Vector2f position, sf::Vector2f width
 	this->point0 = sf::Vector2f(0.f, 0.f);
 	this->point1 = sf::Vector2f(widthHeight.x, 0.f);
 	this->point2 = sf::Vector2f(widthHeight.x, widthHeight.y);
-	this->point3 = sf::Vector2f(0, widthHeight.y);
+	this->point3 = sf::Vector2f(0.f, widthHeight.y);
 }
 
 void PrimitiveRectangle::getToDraw(sf::RenderWindow* window)
@@ -24,12 +24,12 @@ void PrimitiveRectangle::getToDraw(sf::RenderWindow* window)
 
 	ims.create(window->getSize().x, window->getSize().y, sf::Color::Transparent);
 
-	drawLine(point0, point1, ims);
-	drawLine(point1, point2, ims);
-	drawLine(point2, point3, ims);
-	drawLine(point3, point0, ims);
+	drawLine(sf::Vector2f(point0.x + position.x, point0.y + position.y), sf::Vector2f(point1.x + position.x, point1.y + position.y), ims);
+	drawLine(sf::Vector2f(point1.x + position.x, point1.y + position.y), sf::Vector2f(point2.x + position.x, point2.y + position.y), ims);
+	drawLine(sf::Vector2f(point2.x + position.x, point2.y + position.y), sf::Vector2f(point3.x + position.x, point3.y + position.y), ims);
+	drawLine(sf::Vector2f(point3.x + position.x, point3.y + position.y), sf::Vector2f(point0.x + position.x, point0.y + position.y), ims);
 
-	recuFiller(ims, color, point2.x / 2, point2.y / 2);
+	
 
 	text = sf::Texture();
 
@@ -37,7 +37,7 @@ void PrimitiveRectangle::getToDraw(sf::RenderWindow* window)
 
 	arr.setTexture(text);
 
-	arr.setPosition(position);
+	arr.setPosition(sf::Vector2f(0.f, 0.f));
 
 
 	window->draw(arr);

@@ -1,7 +1,7 @@
 #pragma once
 #include "PrimitiveRender.h"
 class PrimitiveEllipse :
-    public PrimitiveRender
+    public DrawableObject
 {
 private:
     double Rx, Ry;

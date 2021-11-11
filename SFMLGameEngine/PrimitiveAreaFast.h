@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 class PrimitiveAreaFast :
-    public PrimitiveRender
+    public DrawableObject
 {
 private:
     float r;
