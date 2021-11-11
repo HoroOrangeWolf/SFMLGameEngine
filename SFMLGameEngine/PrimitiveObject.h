@@ -1,5 +1,5 @@
 #pragma once
-#include "PrimitiveRender.h"
+#include "DrawableObject.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
 

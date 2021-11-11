@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "PrimitiveRender.h"
+#include "DrawableObject.h"
 #include "TransformableObject.h"
 
 class PrimitiveArea: 
