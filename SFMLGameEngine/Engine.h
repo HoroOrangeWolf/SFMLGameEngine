@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Moveable.h"
 using namespace sf;
 
 class Engine {
@@ -12,8 +11,6 @@ private:
 	std::string windowTitle;
 	RenderWindow *render;
 	sf::Color color;
-	std::list<MoveableBlock> toMoveList;
-	std::list<MoveableBlock> constantBlocks;
 	auto getCurrentTime();
 
 
@@ -27,6 +24,4 @@ public:
 	void run();
 	bool isMouseInsideWindow();
 	Vector2i &getTrueMousePosition();
-	void addMoveableBlock(MoveableBlock& move);
-	void addConstantBlock(MoveableBlock& constant);
 };
