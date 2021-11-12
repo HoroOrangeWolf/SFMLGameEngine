@@ -89,8 +89,22 @@ void DrawableObject::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Im
 		double m = (yEnd - yStart) / (xEnd - xStart);
 
 		double y = yStart;
+		int x1, y1;
 		for (double i = xStart; i <= xEnd; i += 1.f) {
-			ar.setPixel(i, std::round(y), color);
+			x1 = (int)i;
+			y1 = std::round(y);
+
+			ar.setPixel(x1, y1, color);
+
+			ar.setPixel(x1 + 1, y1, color);
+			ar.setPixel(x1 + 1, y1 + 1, color);
+			ar.setPixel(x1, y1 + 1, color);
+			ar.setPixel(x1 - 1, y1 + 1, color);
+			ar.setPixel(x1 - 1, y1, color);
+			ar.setPixel(x1 - 1, y1 - 1, color);
+			ar.setPixel(x1, y1 - 1, color);
+			ar.setPixel(x1 + 1, y1 - 1, color);
+
 			y += m;
 		}
 	}
@@ -107,9 +121,22 @@ void DrawableObject::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Im
 		double m = (xEnd - xStart) / (yEnd - yStart);
 
 		double y = xStart;
+		int x1, y1;
 		for (double i = yStart; i <= yEnd; i += 1.f) {
 
-			ar.setPixel(std::round(y), i, color);
+			x1 = std::round(y);
+			y1 = (int)i;
+
+			ar.setPixel(x1, y1, color);
+
+			ar.setPixel(x1 + 1, y1, color);
+			ar.setPixel(x1 + 1, y1 + 1, color);
+			ar.setPixel(x1, y1 + 1, color);
+			ar.setPixel(x1 - 1, y1 + 1, color);
+			ar.setPixel(x1 - 1, y1, color);
+			ar.setPixel(x1 - 1, y1 - 1, color);
+			ar.setPixel(x1, y1 - 1, color);
+			ar.setPixel(x1 + 1, y1 - 1, color);
 
 			y += m;
 		}

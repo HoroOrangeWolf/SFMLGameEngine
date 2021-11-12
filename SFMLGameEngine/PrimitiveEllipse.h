@@ -5,6 +5,7 @@ class PrimitiveEllipse :
 {
 private:
     double Rx, Ry;
+    double rotation = 0;
 public:
     PrimitiveEllipse(double Rx, double Ry);
     void getToDraw(sf::RenderWindow* window);
