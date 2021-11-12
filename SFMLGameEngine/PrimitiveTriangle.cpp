@@ -72,6 +72,7 @@ void PrimitiveTriangle::rotate(float rotation)
 {
 	isChanged = true;
 	rotation = rotation * (M_PI / 180);
+	point0 = sf::Vector2f(point0.x * std::cos(rotation) - point0.y * std::sin(rotation), point0.x * std::sin(rotation) + point0.y * std::cos(rotation));
 	point1 = sf::Vector2f(point1.x * std::cos(rotation) - point1.y * std::sin(rotation), point1.x * std::sin(rotation) + point1.y * std::cos(rotation));
 	point2 = sf::Vector2f(point2.x * std::cos(rotation) - point2.y * std::sin(rotation), point2.x * std::sin(rotation) + point2.y * std::cos(rotation));
 }

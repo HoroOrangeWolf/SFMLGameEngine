@@ -1,5 +1,5 @@
 #include "PrimitiveEllipse.h"
-
+#include <iostream>
 
 PrimitiveEllipse::PrimitiveEllipse(double Rx, double Ry) {
 	this->Rx = Rx;
@@ -13,6 +13,7 @@ void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 		window->draw(arr);
 		return;
 	}
+
 
 	isChanged = false;
 
@@ -29,23 +30,91 @@ void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 
 
 	float value = 0;
+	int xBuff, yBuff;
+	int xBuff2, yBuff2;
 
+
+		
 	for (; value < (M_PI / 2); value += step)
 	{
 
 		int x = std::floor((double)Rx * cos(value));
 		int y = std::floor((double)Ry * sin(value));
 
+		xBuff = xc + x;
+		yBuff = yc + y;
 
-		ims.setPixel(xc + x, yc + y, color);
+		xBuff2 = xc + (xBuff - xc) * std::cos(rotation) - (yBuff - yc) * std::sin(rotation);
+		yBuff2 = xc + (xBuff - xc) * std::sin(rotation) + (yBuff - yc) * std::cos(rotation);
 
-		ims.setPixel(xc - x, yc + y, color);
+		ims.setPixel(xBuff2, yBuff2, color);
 
-		ims.setPixel(xc + x, yc - y, color);
+		ims.setPixel(xBuff2 + 1, yBuff2, color);
+		ims.setPixel(xBuff2 + 1, yBuff2 + 1, color);
+		ims.setPixel(xBuff2, yBuff2 + 1, color);
+		ims.setPixel(xBuff2 - 1, yBuff2 + 1, color);
+		ims.setPixel(xBuff2 - 1, yBuff2, color);
+		ims.setPixel(xBuff2 - 1, yBuff2 - 1, color);
+		ims.setPixel(xBuff2, yBuff2 - 1, color);
+		ims.setPixel(xBuff2 + 1, yBuff2 - 1, color);
 
-		ims.setPixel(xc - x, yc - y, color);
+		xBuff = xc - x;
+		yBuff = yc + y;
 
+		xBuff2 = xc + (xBuff - xc) * std::cos(rotation) - (yBuff - yc) * std::sin(rotation);
+		yBuff2 = xc + (xBuff - xc) * std::sin(rotation) + (yBuff - yc) * std::cos(rotation);
+
+		ims.setPixel(xBuff2, yBuff2, color);
+
+		ims.setPixel(xBuff2 + 1, yBuff2, color);
+		ims.setPixel(xBuff2 + 1, yBuff2 + 1, color);
+		ims.setPixel(xBuff2, yBuff2 + 1, color);
+		ims.setPixel(xBuff2 - 1, yBuff2 + 1, color);
+		ims.setPixel(xBuff2 - 1, yBuff2, color);
+		ims.setPixel(xBuff2 - 1, yBuff2 - 1, color);
+		ims.setPixel(xBuff2, yBuff2 - 1, color);
+		ims.setPixel(xBuff2 + 1, yBuff2 - 1, color);
+
+		xBuff = xc + x;
+		yBuff = yc - y;
+
+		xBuff2 = xc + (xBuff - xc) * std::cos(rotation) - (yBuff - yc) * std::sin(rotation);
+		yBuff2 = xc + (xBuff - xc) * std::sin(rotation) + (yBuff - yc) * std::cos(rotation);
+
+		ims.setPixel(xBuff2, yBuff2, color);
+
+		ims.setPixel(xBuff2 + 1, yBuff2, color);
+		ims.setPixel(xBuff2 + 1, yBuff2 + 1, color);
+		ims.setPixel(xBuff2, yBuff2 + 1, color);
+		ims.setPixel(xBuff2 - 1, yBuff2 + 1, color);
+		ims.setPixel(xBuff2 - 1, yBuff2, color);
+		ims.setPixel(xBuff2 - 1, yBuff2 - 1, color);
+		ims.setPixel(xBuff2, yBuff2 - 1, color);
+		ims.setPixel(xBuff2 + 1, yBuff2 - 1, color);
+
+		xBuff = xc - x;
+		yBuff = yc - y;
+
+		xBuff2 = xc + (xBuff - xc) * std::cos(rotation) - (yBuff - yc) * std::sin(rotation);
+		yBuff2 = xc + (xBuff - xc) * std::sin(rotation) + (yBuff - yc) * std::cos(rotation);
+
+		ims.setPixel(xBuff2, yBuff2, color);
+
+		ims.setPixel(xBuff2 + 1, yBuff2, color);
+		ims.setPixel(xBuff2 + 1, yBuff2 + 1, color);
+		ims.setPixel(xBuff2, yBuff2 + 1, color);
+		ims.setPixel(xBuff2 - 1, yBuff2 + 1, color);
+		ims.setPixel(xBuff2 - 1, yBuff2, color);
+		ims.setPixel(xBuff2 - 1, yBuff2 - 1, color);
+		ims.setPixel(xBuff2, yBuff2 - 1, color);
+		ims.setPixel(xBuff2 + 1, yBuff2 - 1, color);
 	}
+	
+	
+
+	
+
+	//recuFiller(ims, color, (int)xc, (int)yc);
 
 	recuFiller(ims, color, (int)xc, (int)yc);
 
@@ -73,8 +142,9 @@ void PrimitiveEllipse::scale(float k)
 	Ry = std::abs(Ry * k);
 }
 
-void PrimitiveEllipse::rotate(float rotation)
+void PrimitiveEllipse::rotate(float rot)
 {
-	// TODO: IDK
+	this->rotation += rot * (M_PI / 180);;
+	isChanged = true;
 }
 

@@ -62,7 +62,9 @@ void Engine::run()
 	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
 	
 	sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
-	PrimitiveRectangle primitive(sf::Vector2f(5.f,5.f), sf::Vector2f(200.f, 400.f));
+  
+	PrimitiveRectangle primitive(sf::Vector2f(150.f,150.f), sf::Vector2f(50.f, 50.f));
+
 	//primitive.rotate(55.f);
 	//PrimitiveArea primitiveArea(sf::Vector2f(0.f, 0.f), 25.f);
 	PrimitiveTriangle primit(sf::Vector2f(250.f, 250.f), sf::Vector2f(50.f, 150.f));
@@ -76,19 +78,23 @@ void Engine::run()
 	player.setColor(sf::Color::Blue);
 	player.setPosition(sf::Vector2f(5.f, 5.f));
 
-	primit.rotate(48.f);
-	
 	primit.setColor(sf::Color::Red);
 	primitive.setColor(sf::Color::Red);
 	
 	//PrimitiveEllipse pr(100.f, 50.f);
 	//pr.setPosition(sf::Vector2f(150.f, 150.f));
-	PrimitiveEllipse por(150.f, 50.f);
+	PrimitiveEllipse por(75.f, 50.f);
+	por.setColor(sf::Color::Red);
+	por.setPosition(sf::Vector2f(250.f, 250.f));
+
 	PrimitiveObject obj(std::vector<sf::Vector2f>({ sf::Vector2f(0.f,0.f), sf::Vector2f(250.f, 0.f),sf::Vector2f(230.f, 230.f), sf::Vector2f(125.f, 125.f) ,sf::Vector2f(0.f, 250.f)}));
 
-	obj.setPosition(sf::Vector2f(250.f, 250.f));
+	obj.setPosition(sf::Vector2f(450.f, 450.f));
 	obj.rotate(48.f);
 
+
+
+	primitive.rotate(80.f);
 	
 
 	background.setFillColor(this->color);
@@ -130,16 +136,25 @@ void Engine::run()
 			lastposs = currentPosition;
 		}
 
-		player.update();
+		//player.update();
+
+
 		
 		render->clear();
 		render->draw(background);
+
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
+			obj.rotate(1.f);
+		}
 
 		//test
 		//obj.getToDraw(render);
 		//primit.getToDraw(render);
 		//primitive.getToDraw(render);
-		player.getToDraw(render);
+
+		obj.getToDraw(render);
+
 
 		render->display();
 	}
