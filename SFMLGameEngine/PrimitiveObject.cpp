@@ -77,6 +77,7 @@ void PrimitiveObject::rotate(float rotation)
 	isChanged = true;
 	rotation = rotation * (M_PI / 180);
 	for (int i = 0; i < pointList.size(); ++i) {
+
 		sf::Vector2f point = pointList[i];
 
 		pointList[i] = sf::Vector2f(point.x * std::cos(rotation) - point.y * std::sin(rotation), point.x * std::sin(rotation) + point.y * std::cos(rotation));

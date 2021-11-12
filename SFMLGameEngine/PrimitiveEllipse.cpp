@@ -116,6 +116,8 @@ void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 
 	//recuFiller(ims, color, (int)xc, (int)yc);
 
+	recuFiller(ims, color, (int)xc, (int)yc);
+
 	text = sf::Texture();
 
 	text.loadFromImage(ims);

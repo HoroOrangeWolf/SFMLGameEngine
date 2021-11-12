@@ -62,7 +62,9 @@ void Engine::run()
 	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
 	
 	sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
+  
 	PrimitiveRectangle primitive(sf::Vector2f(150.f,150.f), sf::Vector2f(50.f, 50.f));
+
 	//primitive.rotate(55.f);
 	//PrimitiveArea primitiveArea(sf::Vector2f(0.f, 0.f), 25.f);
 	PrimitiveTriangle primit(sf::Vector2f(250.f, 250.f), sf::Vector2f(50.f, 150.f));
@@ -76,7 +78,6 @@ void Engine::run()
 	player.setColor(sf::Color::Blue);
 	player.setPosition(sf::Vector2f(5.f, 5.f));
 
-	
 	primit.setColor(sf::Color::Red);
 	primitive.setColor(sf::Color::Red);
 	
@@ -90,6 +91,7 @@ void Engine::run()
 
 	obj.setPosition(sf::Vector2f(450.f, 450.f));
 	obj.rotate(48.f);
+
 
 
 	primitive.rotate(80.f);
@@ -136,10 +138,11 @@ void Engine::run()
 
 		//player.update();
 
-	
+
 		
 		render->clear();
 		render->draw(background);
+
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
 			obj.rotate(1.f);
@@ -149,7 +152,9 @@ void Engine::run()
 		//obj.getToDraw(render);
 		//primit.getToDraw(render);
 		//primitive.getToDraw(render);
+
 		obj.getToDraw(render);
+
 
 		render->display();
 	}

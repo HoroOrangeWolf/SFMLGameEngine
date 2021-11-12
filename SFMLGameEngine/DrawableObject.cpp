@@ -105,6 +105,7 @@ void DrawableObject::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Im
 			ar.setPixel(x1, y1 - 1, color);
 			ar.setPixel(x1 + 1, y1 - 1, color);
 
+
 			y += m;
 		}
 	}
@@ -137,6 +138,7 @@ void DrawableObject::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Im
 			ar.setPixel(x1 - 1, y1 - 1, color);
 			ar.setPixel(x1, y1 - 1, color);
 			ar.setPixel(x1 + 1, y1 - 1, color);
+
 
 			y += m;
 		}
