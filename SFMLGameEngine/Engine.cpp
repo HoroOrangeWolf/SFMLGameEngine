@@ -7,6 +7,7 @@
 #include "PrimitiveObject.h"
 #include "PrimitiveTriangle.h"
 #include "PrimitiveRectangle.h"
+#include "BitmapHandler.h"
 #include "Player.h"
 
 
@@ -75,8 +76,15 @@ void Engine::run()
 	player.addKeyAndStore(KeyAndVector(sf::Vector2f(0.f, 1.f), sf::Keyboard::S));
 	player.addKeyAndStore(KeyAndVector(sf::Vector2f(1.f, 0.f), sf::Keyboard::D));
 
-	player.setColor(sf::Color::Blue);
-	player.setPosition(sf::Vector2f(5.f, 5.f));
+	sf::Image ims[] = { BitmapHandler::getImageFromFile("images/1.png"),
+		BitmapHandler::getImageFromFile("images/2.png"),
+		BitmapHandler::getImageFromFile("images/3.png"),
+		BitmapHandler::getImageFromFile("images/4.png")
+	};
+
+	player.setFrames(ims, 4);
+
+
 
 	primit.setColor(sf::Color::Red);
 	primitive.setColor(sf::Color::Red);
@@ -143,19 +151,10 @@ void Engine::run()
 		render->clear();
 		render->draw(background);
 
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
-			obj.rotate(1.f);
-		}
-
-		//test
-		//obj.getToDraw(render);
-		//primit.getToDraw(render);
-		//primitive.getToDraw(render);
-
-		obj.getToDraw(render);
-
-
+		player.animate();
+		player.update();
+		player.getToDraw(render);
+		
 		render->display();
 	}
 

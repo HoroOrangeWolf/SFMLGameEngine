@@ -6,14 +6,14 @@
 class AnimatedObject
 {
 protected:
-	int intervalFPS = 4;
+	int intervalFPS = 6;
 	int countFPS = 0;
 	int imgIndex = 0;
 	bool isStop = false;
 	std::vector<sf::Image> frames;
 	
 public:
-	void setFrames(sf::Image arr[]);
+	void setFrames(sf::Image arr[], int length);
 	void addFrame(sf::Image img);
 	void clearFrames();
 	void setIntervalFPS(int fps);

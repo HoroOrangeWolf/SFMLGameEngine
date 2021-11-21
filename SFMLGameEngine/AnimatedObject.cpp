@@ -1,11 +1,9 @@
 #include "AnimatedObject.h"
 
-void AnimatedObject::setFrames(sf::Image arr[])
+void AnimatedObject::setFrames(sf::Image arr[], int length)
 {
-	int size = sizeof(arr);
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < length; ++i)
 		frames.push_back(arr[i]);
-
 }
 
 void AnimatedObject::addFrame(sf::Image img)
