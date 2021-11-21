@@ -7,7 +7,7 @@ void DrawableObject::recuFiller(sf::Image& image, sf::Color& color, int x, int y
 	if (image.getPixel(x, y) == color)
 		return;
 
-	image.setPixel(x, y, color);
+	putPixel(x, y, color);
 
 	recuFiller(image, color, x + 1, y);
 	recuFiller(image, color, x - 1, y);
@@ -20,6 +20,12 @@ void DrawableObject::setPosition(sf::Vector2f position)
 {
 	this->position = position;
 	this->color = sf::Color::Red;
+}
+
+void DrawableObject::putPixel(int x, int y, sf::Color color)
+{
+	if (x >= 0 && x < ims.getSize().x && y >= 0 && y < ims.getSize().y)
+		ims.setPixel(x, y, color);
 }
 
 void DrawableObject::evenFiller(sf::Image& image, sf::Color& color, int width, int height)
@@ -41,7 +47,7 @@ void DrawableObject::evenFiller(sf::Image& image, sf::Color& color, int width, i
 						break;
 
 					for (; x < width && image.getPixel(x, y) == sf::Color::Transparent; ++x)
-						image.setPixel(x, y, color);
+						putPixel(x, y, color);
 				}
 				else
 					for (; x < width && image.getPixel(x, y) == sf::Color::Transparent; ++x);
@@ -94,16 +100,16 @@ void DrawableObject::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Im
 			x1 = (int)i;
 			y1 = std::round(y);
 
-			ar.setPixel(x1, y1, color);
+			putPixel(x1, y1, color);
 
-			ar.setPixel(x1 + 1, y1, color);
-			ar.setPixel(x1 + 1, y1 + 1, color);
-			ar.setPixel(x1, y1 + 1, color);
-			ar.setPixel(x1 - 1, y1 + 1, color);
-			ar.setPixel(x1 - 1, y1, color);
-			ar.setPixel(x1 - 1, y1 - 1, color);
-			ar.setPixel(x1, y1 - 1, color);
-			ar.setPixel(x1 + 1, y1 - 1, color);
+			putPixel(x1 + 1, y1, color);
+			putPixel(x1 + 1, y1 + 1, color);
+			putPixel(x1, y1 + 1, color);
+			putPixel(x1 - 1, y1 + 1, color);
+			putPixel(x1 - 1, y1, color);
+			putPixel(x1 - 1, y1 - 1, color);
+			putPixel(x1, y1 - 1, color);
+			putPixel(x1 + 1, y1 - 1, color);
 
 
 			y += m;
@@ -128,16 +134,16 @@ void DrawableObject::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Im
 			x1 = std::round(y);
 			y1 = (int)i;
 
-			ar.setPixel(x1, y1, color);
+			putPixel(x1, y1, color);
 
-			ar.setPixel(x1 + 1, y1, color);
-			ar.setPixel(x1 + 1, y1 + 1, color);
-			ar.setPixel(x1, y1 + 1, color);
-			ar.setPixel(x1 - 1, y1 + 1, color);
-			ar.setPixel(x1 - 1, y1, color);
-			ar.setPixel(x1 - 1, y1 - 1, color);
-			ar.setPixel(x1, y1 - 1, color);
-			ar.setPixel(x1 + 1, y1 - 1, color);
+			putPixel(x1 + 1, y1, color);
+			putPixel(x1 + 1, y1 + 1, color);
+			putPixel(x1, y1 + 1, color);
+			putPixel(x1 - 1, y1 + 1, color);
+			putPixel(x1 - 1, y1, color);
+			putPixel(x1 - 1, y1 - 1, color);
+			putPixel(x1, y1 - 1, color);
+			putPixel(x1 + 1, y1 - 1, color);
 
 
 			y += m;

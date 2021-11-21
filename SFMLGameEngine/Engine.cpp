@@ -89,7 +89,7 @@ void Engine::run()
 
 	PrimitiveObject obj(std::vector<sf::Vector2f>({ sf::Vector2f(0.f,0.f), sf::Vector2f(250.f, 0.f),sf::Vector2f(230.f, 230.f), sf::Vector2f(125.f, 125.f) ,sf::Vector2f(0.f, 250.f)}));
 
-	obj.setPosition(sf::Vector2f(450.f, 450.f));
+	obj.setPosition(sf::Vector2f(200.f, 50.f));
 	obj.rotate(48.f);
 
 

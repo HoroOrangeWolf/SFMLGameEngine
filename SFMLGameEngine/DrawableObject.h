@@ -18,6 +18,7 @@ protected:
 public:
 	DrawableObject();
 	void setPosition(sf::Vector2f position);
+	void putPixel(int x, int y, sf::Color color);
 	sf::Sprite arr;
 	void drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Image& ar);
 	void setColor(sf::Color color);
