@@ -21,6 +21,11 @@ void AnimatedObject::setIntervalFPS(int fps)
 	intervalFPS = fps;
 }
 
+int AnimatedObject::getIntervalFPS()
+{
+	return intervalFPS;
+}
+
 void AnimatedObject::setIsStop(bool isStop)
 {
 	this->isStop = isStop;

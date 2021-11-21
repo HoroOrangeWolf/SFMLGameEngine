@@ -17,6 +17,7 @@ public:
 	void addFrame(sf::Image img);
 	void clearFrames();
 	void setIntervalFPS(int fps);
+	int getIntervalFPS();
 	void setIsStop(bool isStop);
 	bool getIsStop();
 	virtual void animate() = 0;
