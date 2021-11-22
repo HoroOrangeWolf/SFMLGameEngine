@@ -1,20 +1,31 @@
 #include "AnimatedObject.h"
 
-void AnimatedObject::setFrames(sf::Image arr[], int length)
+
+void AnimatedObject::setFramesFront(sf::Image arr[], int length)
 {
 	for (int i = 0; i < length; ++i)
-		frames.push_back(arr[i]);
+		framesFront.push_back(arr[i]);
 }
 
-void AnimatedObject::addFrame(sf::Image img)
+void AnimatedObject::setFramesBack(sf::Image arr[], int length)
 {
-	frames.push_back(img);
+	for (int i = 0; i < length; ++i)
+		framesBack.push_back(arr[i]);
 }
 
-void AnimatedObject::clearFrames()
+void AnimatedObject::setFramesLeft(sf::Image arr[], int length)
 {
-	frames.clear();
+	for (int i = 0; i < length; ++i)
+		framesLeft.push_back(arr[i]);
 }
+
+void AnimatedObject::setFramesRight(sf::Image arr[], int length)
+{
+	for (int i = 0; i < length; ++i)
+		framesRight.push_back(arr[i]);
+}
+
+
 
 void AnimatedObject::setIntervalFPS(int fps)
 {

@@ -4,6 +4,8 @@
 #include "SpriteObject.h"
 #include <SFML/Window.hpp>
 
+enum class Direction {LEFT, RIGHT, UP, DOWN};
+
 class Player :
     public UpdateableObject,
     public SpriteObject
@@ -11,6 +13,8 @@ class Player :
 private:
     sf::Vector2f widthHeight;
     sf::Vector2f position;
+    Direction direction = Direction::RIGHT;
+    
 public:
     Player(sf::Vector2f widthHeight) {
         this->widthHeight = widthHeight;

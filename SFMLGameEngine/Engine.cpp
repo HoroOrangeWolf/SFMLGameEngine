@@ -71,18 +71,42 @@ void Engine::run()
 	PrimitiveTriangle primit(sf::Vector2f(250.f, 250.f), sf::Vector2f(50.f, 150.f));
 	Player player(sf::Vector2f(150.f, 150.f));
 
-	player.addKeyAndStore(KeyAndVector(sf::Vector2f(0.f, -1.f), sf::Keyboard::W));
-	player.addKeyAndStore(KeyAndVector(sf::Vector2f(-1.f, 0.f), sf::Keyboard::A));
-	player.addKeyAndStore(KeyAndVector(sf::Vector2f(0.f, 1.f), sf::Keyboard::S));
-	player.addKeyAndStore(KeyAndVector(sf::Vector2f(1.f, 0.f), sf::Keyboard::D));
+	player.addKeyAndStore(KeyAndVector(sf::Vector2f(0.f, -3.f), sf::Keyboard::W));
+	player.addKeyAndStore(KeyAndVector(sf::Vector2f(-3.f, 0.f), sf::Keyboard::A));
+	player.addKeyAndStore(KeyAndVector(sf::Vector2f(0.f, 3.f), sf::Keyboard::S));
+	player.addKeyAndStore(KeyAndVector(sf::Vector2f(3.f, 0.f), sf::Keyboard::D));
 
-	sf::Image ims[] = { BitmapHandler::getImageFromFile("images/1.png"),
+	sf::Image ims[] = { BitmapHandler::getImageFromFile("images/13.png"),
+		BitmapHandler::getImageFromFile("images/14.png"),
+		BitmapHandler::getImageFromFile("images/15.png"),
+		BitmapHandler::getImageFromFile("images/16.png")
+	};
+
+	player.setFramesFront(ims, 4);
+
+	sf::Image ims1[] = { BitmapHandler::getImageFromFile("images/9.png"),
+		BitmapHandler::getImageFromFile("images/10.png"),
+		BitmapHandler::getImageFromFile("images/11.png"),
+		BitmapHandler::getImageFromFile("images/12.png")
+	};
+
+	player.setFramesBack(ims1, 4);
+
+	sf::Image ims2[] = { BitmapHandler::getImageFromFile("images/1.png"),
 		BitmapHandler::getImageFromFile("images/2.png"),
 		BitmapHandler::getImageFromFile("images/3.png"),
 		BitmapHandler::getImageFromFile("images/4.png")
 	};
 
-	player.setFrames(ims, 4);
+	player.setFramesRight(ims2, 4);
+
+	sf::Image ims3[] = { BitmapHandler::getImageFromFile("images/5.png"),
+		BitmapHandler::getImageFromFile("images/6.png"),
+		BitmapHandler::getImageFromFile("images/7.png"),
+		BitmapHandler::getImageFromFile("images/8.png")
+	};
+
+	player.setFramesLeft(ims3, 4);
 
 
 
@@ -146,11 +170,13 @@ void Engine::run()
 
 		//player.update();
 
-
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			obj.rotate(2.f);
 		
 		render->clear();
 		render->draw(background);
-
+		//obj.getToDraw(render);
+		
 		player.animate();
 		player.update();
 		player.getToDraw(render);
