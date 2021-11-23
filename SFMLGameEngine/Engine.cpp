@@ -16,7 +16,7 @@ Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight)
 	this->windowHeight = windowHeight;
 	this->windowWidth = windowWidth;
 	this->windowTitle = windowTitle;
-	this->videoStyle = -1;
+	this->videoStyle = videoStyle;
 	this->color = Color::White;
 }
 
@@ -34,12 +34,21 @@ Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight, int v
 	this->color = Color::White;
 }
 
-Engine::Engine(std::string windowTitle, int videoMod)
+Engine::Engine(std::string windowTitle, int videoMode)
 {
 	this->windowHeight = 0;
 	this->windowWidth = 0;
 	this->windowTitle = windowTitle;
-	this->videoStyle = -1;
+	this->videoStyle = videoStyle;
+	this->color = Color::White;
+}
+
+Engine::Engine(VideoMode videoMode, std::string windowTitle, int videoStyle)
+{
+	this->windowHeight = 0;
+	this->windowWidth = 0;
+	this->windowTitle = windowTitle;
+	this->videoStyle = videoStyle;
 	this->color = Color::White;
 }
 
@@ -60,8 +69,10 @@ void Engine::setBackgroundColor(Color cl)
 
 void Engine::run()
 {
-	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
-	
+	//this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
+	//this->render = new RenderWindow(sf::VideoMode(600, 600), "title", sf::Style::Fullscreen);
+	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle, videoStyle);
+
 	sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
   
 	PrimitiveRectangle primitive(sf::Vector2f(150.f,150.f), sf::Vector2f(50.f, 50.f));
