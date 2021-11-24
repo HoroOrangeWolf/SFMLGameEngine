@@ -19,8 +19,8 @@ void DrawableObject::recuFiller(sf::Image& image, sf::Color& color, int x, int y
 void DrawableObject::setPosition(sf::Vector2f position)
 {
 	this->position = position;
-	this->color = sf::Color::Red;
 }
+
 
 void DrawableObject::putPixel(int x, int y, sf::Color color)
 {
@@ -63,6 +63,7 @@ void DrawableObject::evenFiller(sf::Image& image, sf::Color& color, int width, i
 DrawableObject::DrawableObject()
 {
 	this->position = sf::Vector2f(0.f, 0.f);
+	isChanged = true;
 }
 
 void DrawableObject::setColor(sf::Color color)

@@ -32,14 +32,17 @@ void PrimitiveArea::getToDraw(sf::RenderWindow* window)
 	for (value; value < 2 * M_PI; value += step)
 	{
 		sf::Vertex vertex;
-
-		vertex.color = sf::Color::Red;
 		vertex.position = sf::Vector2f(round(xc + (double)r * cos(value) + 0.5), round(yc + (double)r * sin(value) + 0.5));
 
-		ims.setPixel(vertex.position.x + position.x, vertex.position.y + position.y, sf::Color::Red);
+		int x1 = vertex.position.x, y1 = vertex.position.y;
+
+		putPixel(x1, y1, color);
+
 	}
 
 	recuFiller(ims, color, (int)xc, (int)yc);
+
+	
 
 	text = sf::Texture();
 
@@ -67,6 +70,5 @@ void PrimitiveArea::scale(float k)
 void PrimitiveArea::rotate(float rotation)
 {
 }
-
 
 

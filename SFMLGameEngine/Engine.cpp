@@ -54,7 +54,26 @@ Engine::Engine(VideoMode videoMode, std::string windowTitle, int videoStyle)
 
 Engine::~Engine()
 {
-	delete render;
+}
+
+void Engine::addPlayer(Player* player)
+{
+	playerList.push_back(player);
+}
+
+void Engine::clearPlayers()
+{
+	playerList.clear();
+}
+
+void Engine::addDrawable(DrawableObject* drawable)
+{
+	drawableList.push_back(drawable);
+}
+
+void Engine::clearDrawable()
+{
+	drawableList.clear();
 }
 
 void Engine::setFps(int fps)
@@ -69,76 +88,9 @@ void Engine::setBackgroundColor(Color cl)
 
 void Engine::run()
 {
-	//this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle);
-	//this->render = new RenderWindow(sf::VideoMode(600, 600), "title", sf::Style::Fullscreen);
 	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle, videoStyle);
 
 	sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
-  
-	PrimitiveRectangle primitive(sf::Vector2f(150.f,150.f), sf::Vector2f(50.f, 50.f));
-
-	//primitive.rotate(55.f);
-	//PrimitiveArea primitiveArea(sf::Vector2f(0.f, 0.f), 25.f);
-	PrimitiveTriangle primit(sf::Vector2f(250.f, 250.f), sf::Vector2f(50.f, 150.f));
-	Player player(sf::Vector2f(150.f, 150.f));
-
-	player.addKeyAndStore(KeyAndVector(sf::Vector2f(0.f, -3.f), sf::Keyboard::W));
-	player.addKeyAndStore(KeyAndVector(sf::Vector2f(-3.f, 0.f), sf::Keyboard::A));
-	player.addKeyAndStore(KeyAndVector(sf::Vector2f(0.f, 3.f), sf::Keyboard::S));
-	player.addKeyAndStore(KeyAndVector(sf::Vector2f(3.f, 0.f), sf::Keyboard::D));
-
-	sf::Image ims[] = { BitmapHandler::getImageFromFile("images/13.png"),
-		BitmapHandler::getImageFromFile("images/14.png"),
-		BitmapHandler::getImageFromFile("images/15.png"),
-		BitmapHandler::getImageFromFile("images/16.png")
-	};
-
-	player.setFramesFront(ims, 4);
-
-	sf::Image ims1[] = { BitmapHandler::getImageFromFile("images/9.png"),
-		BitmapHandler::getImageFromFile("images/10.png"),
-		BitmapHandler::getImageFromFile("images/11.png"),
-		BitmapHandler::getImageFromFile("images/12.png")
-	};
-
-	player.setFramesBack(ims1, 4);
-
-	sf::Image ims2[] = { BitmapHandler::getImageFromFile("images/1.png"),
-		BitmapHandler::getImageFromFile("images/2.png"),
-		BitmapHandler::getImageFromFile("images/3.png"),
-		BitmapHandler::getImageFromFile("images/4.png")
-	};
-
-	player.setFramesRight(ims2, 4);
-
-	sf::Image ims3[] = { BitmapHandler::getImageFromFile("images/5.png"),
-		BitmapHandler::getImageFromFile("images/6.png"),
-		BitmapHandler::getImageFromFile("images/7.png"),
-		BitmapHandler::getImageFromFile("images/8.png")
-	};
-
-	player.setFramesLeft(ims3, 4);
-
-
-
-	primit.setColor(sf::Color::Red);
-	primitive.setColor(sf::Color::Red);
-	
-	//PrimitiveEllipse pr(100.f, 50.f);
-	//pr.setPosition(sf::Vector2f(150.f, 150.f));
-	PrimitiveEllipse por(75.f, 50.f);
-	por.setColor(sf::Color::Red);
-	por.setPosition(sf::Vector2f(250.f, 250.f));
-
-	PrimitiveObject obj(std::vector<sf::Vector2f>({ sf::Vector2f(0.f,0.f), sf::Vector2f(250.f, 0.f),sf::Vector2f(230.f, 230.f), sf::Vector2f(125.f, 125.f) ,sf::Vector2f(0.f, 250.f)}));
-
-	obj.setPosition(sf::Vector2f(200.f, 50.f));
-	obj.rotate(48.f);
-
-
-
-	primitive.rotate(80.f);
-	
 
 	background.setFillColor(this->color);
 
@@ -149,12 +101,21 @@ void Engine::run()
 
 	while (render->isOpen())
 	{
-		sf::Event event;
+		sf::Event events;
 
-		while (render->pollEvent(event))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+			render->close();
+			delete render;
+			return;
+		}
+
+		while (render->pollEvent(events))
 		{
-			if (event.type == Event::Closed)
+			if (events.type == Event::Closed) {
 				render->close();
+				delete render;
+				return;
+			}
 		}
 
 		auto currentTime = getCurrentTime();
@@ -174,26 +135,32 @@ void Engine::run()
 
 			Vector2i mouseTruePosition = getTrueMousePosition();
 
-			//std::cout << "Mouse possition: x " << mouseTruePosition.x << " y " << mouseTruePosition.y << std::endl;
-
 			lastposs = currentPosition;
 		}
 
-		//player.update();
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			obj.rotate(2.f);
-		
 		render->clear();
-		render->draw(background);
-		//obj.getToDraw(render);
-		
-		player.animate();
-		player.update();
-		player.getToDraw(render);
-		
+
+		for (int i = 0; i < drawableList.size(); ++i) {
+			DrawableObject* drawable = drawableList[i];
+
+			drawable->getToDraw(render);
+		}
+
+
+		for (int i = 0; i < playerList.size(); ++i) {
+			Player* player = playerList[i];
+
+			player->update();
+			player->animate();
+			player->getToDraw(render);
+
+		}
+	
 		render->display();
+
 	}
+
+	delete render;
 
 }
 

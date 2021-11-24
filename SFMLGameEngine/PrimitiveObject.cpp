@@ -84,4 +84,3 @@ void PrimitiveObject::rotate(float rotation)
 	}
 }
 
-

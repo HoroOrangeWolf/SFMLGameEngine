@@ -10,7 +10,7 @@ class DrawableObject
 protected:
 	bool isChanged = true;
 	sf::Vector2f position;
-	sf::Color color;
+	sf::Color color = sf::Color::Red;
 	sf::Image ims;
 	sf::Texture text;
 	void recuFiller(sf::Image& image, sf::Color& color, int x, int y);

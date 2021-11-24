@@ -8,8 +8,6 @@ LineSegment::LineSegment(sf::Vector2f point1, sf::Vector2f point2)
 
 void LineSegment::getToDraw(sf::RenderWindow* window)
 {
-	sf::VertexArray buff;
-
 	if (!isChanged)
 	{
 		window->draw(arr);
@@ -37,6 +35,7 @@ void LineSegment::getToDraw(sf::RenderWindow* window)
 
 void LineSegment::translate(sf::Vector2f moveBy)
 {
+
 	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
 }
 
@@ -50,3 +49,4 @@ void LineSegment::rotate(float rotation)
 	point1 = sf::Vector2f(point1.x * std::cos(rotation) - point1.y * std::sin(rotation), point1.x * std::sin(rotation) + point1.y * std::cos(rotation));
 	point2 = sf::Vector2f(point2.x * std::cos(rotation) - point2.y * std::sin(rotation), point2.x * std::sin(rotation) + point2.y * std::cos(rotation));
 }
+

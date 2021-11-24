@@ -65,5 +65,4 @@ void PrimitiveRectangle::rotate(float rotation)
 	point1 = sf::Vector2f(point1.x * std::cos(rotation) - point1.y * std::sin(rotation), point1.x * std::sin(rotation) + point1.y * std::cos(rotation));
 	point2 = sf::Vector2f(point2.x * std::cos(rotation) - point2.y * std::sin(rotation), point2.x * std::sin(rotation) + point2.y * std::cos(rotation));
 	point3 = sf::Vector2f(point3.x * std::cos(rotation) - point3.y * std::sin(rotation), point3.x * std::sin(rotation) + point3.y * std::cos(rotation));
-
 }

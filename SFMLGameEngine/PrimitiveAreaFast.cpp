@@ -19,17 +19,16 @@ void PrimitiveAreaFast::getToDraw(sf::RenderWindow* window)
 		return;
 	}
 
-    isChanged = false;
+	isChanged = false;
 
-    sf::Image im = sf::Image();
+	ims = sf::Image();
 
-	im.create(window->getSize().x, window->getSize().y);
+	ims.create(window->getSize().x, window->getSize().y, sf::Color::Transparent);
 
 	float step = 1.f / this->r;
 
 	float xc = r + position.x;
 	float yc = r + position.y;
-
 
 	float value = 0;
 
@@ -38,14 +37,10 @@ void PrimitiveAreaFast::getToDraw(sf::RenderWindow* window)
 		double x = (double)r * cos(value) + 0.5;
 		double y = (double)r * sin(value) + 0.5;
 
-		im.setPixel((xc + x), (yc + y), color);
-
-		im.setPixel((xc - x), (yc + y), color);
-
-		im.setPixel((xc + x), (yc - y), color);
-
-		im.setPixel((xc - x), (yc - y), color);
-
+		putPixel((xc + x), (yc + y), color);
+		putPixel((xc - x), (yc + y), color);
+		putPixel((xc + x), (yc - y), color);
+		putPixel((xc - x), (yc - y), color);
 	}
 
 	recuFiller(ims, color, (int)xc, (int)yc);
@@ -76,4 +71,3 @@ void PrimitiveAreaFast::scale(float k)
 void PrimitiveAreaFast::rotate(float rotation)
 {
 }
-
