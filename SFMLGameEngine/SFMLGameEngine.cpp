@@ -193,7 +193,7 @@ int main()
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
 
-	std::cout << "Pokaz nr 6: Animacje i poruszanie\n" << std::endl;
+	std::cout << "Pokaz nr 7: Animacje i poruszanie\n" << std::endl;
 
 	std::cout << "Nacisnij Q aby zakonczyc\n" << std::endl;
 	engine.clearDrawable();
