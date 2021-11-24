@@ -1,16 +1,32 @@
 #include "PrimitiveAreaFast.h"
 
+/**
+ * .
+ * \brief Konstruktor
+ * \param r Promien
+ */
 PrimitiveAreaFast::PrimitiveAreaFast(float r)
 {
     this->r = r;
 }
 
+/**
+ * .
+ * \brief Konstruktor
+ * \param color Kolor
+ * \param r Promien
+ */
 PrimitiveAreaFast::PrimitiveAreaFast(sf::Color color, float r)
 {
     this->r = r;
     this->color = color;
 }
 
+/**
+ * .
+ * \brief Rysowanie szybkiego okregu
+ * \param window Wskaznik na okno
+ */
 void PrimitiveAreaFast::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
@@ -56,18 +72,33 @@ void PrimitiveAreaFast::getToDraw(sf::RenderWindow* window)
 	window->draw(arr);
 }
 
+/**
+ * .
+ * \brief Przesuniecie
+ * \param moveBy Wektor przesuniecia
+ */
 void PrimitiveAreaFast::translate(sf::Vector2f moveBy)
 {
 	isChanged = true;
 	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
 }
 
+/**
+ * .
+ * \brief Skalowanie
+ * \param k Wspolczynnik skalowania
+ */
 void PrimitiveAreaFast::scale(float k)
 {
 	isChanged = true;
 	r = std::abs(k * r);
 }
 
+/**
+ * .
+ * \brief Rotacja
+ * \param rotation Wspolczynnik rotacji
+ */
 void PrimitiveAreaFast::rotate(float rotation)
 {
 }

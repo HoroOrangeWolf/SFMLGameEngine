@@ -1,11 +1,22 @@
 #include "PrimitiveEllipse.h"
 #include <iostream>
 
+/**
+ * .
+ * \brief Konstruktor
+ * \param Rx Promien X
+ * \param Ry Promien Y
+*/
 PrimitiveEllipse::PrimitiveEllipse(double Rx, double Ry) {
 	this->Rx = Rx;
 	this->Ry = Ry;
 }
 
+/**
+ * .
+ * \brief Rysowanie elipsy
+ * \param window Wskaznik na okno
+ */
 void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
@@ -125,12 +136,22 @@ void PrimitiveEllipse::getToDraw(sf::RenderWindow* window)
 	window->draw(arr);
 }
 
+/**
+ * .
+ * \brief Przesuniecie
+ * \param moveBy Wektor przesuniecia
+ */
 void PrimitiveEllipse::translate(sf::Vector2f moveBy)
 {
 	isChanged = true;
 	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
 }
 
+/**
+ * .
+ * \brief Skalowanie
+ * \param k Wspolczynnik skalowania
+ */
 void PrimitiveEllipse::scale(float k)
 {
 	isChanged = true;
@@ -138,6 +159,11 @@ void PrimitiveEllipse::scale(float k)
 	Ry = std::abs(Ry * k);
 }
 
+/**
+ * .
+ * \brief Rotacja
+ * \param rot Wspolczynnik rotacji
+ */
 void PrimitiveEllipse::rotate(float rot)
 {
 	this->rotation += rot * (M_PI / 180);;

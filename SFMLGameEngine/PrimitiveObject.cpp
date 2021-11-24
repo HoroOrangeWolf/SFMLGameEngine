@@ -1,11 +1,21 @@
 #include "PrimitiveObject.h"
 #include <iostream>
 
+/**
+ * .
+ * \brief Konstruktor
+ * \param pointList Lista punktow
+ */
 PrimitiveObject::PrimitiveObject(std::vector<sf::Vector2f> pointList)
 {
 	this->pointList = pointList;
 }
 
+/**
+ * .
+ * \brief Rysowanie obiektu
+ * \param window Wskaznik na okno
+ */
 void PrimitiveObject::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
@@ -57,12 +67,22 @@ void PrimitiveObject::getToDraw(sf::RenderWindow* window)
 	window->draw(arr);
 }
 
+/**
+ * .
+ * \brief Przesuniecie
+ * \param moveBy Wektor przesuniecia
+ */
 void PrimitiveObject::translate(sf::Vector2f moveBy)
 {
 	isChanged = true;
 	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
 }
 
+/**
+ * .
+ * \brief Skalowanie
+ * \param k Wspolczynnik skalowania
+ */
 void PrimitiveObject::scale(float k)
 {
 	isChanged = true;
@@ -72,6 +92,11 @@ void PrimitiveObject::scale(float k)
 	}
 }
 
+/**
+ * .
+ * \brief Rotacja
+ * \param rotation Wspolczynnik rotacji
+ */
 void PrimitiveObject::rotate(float rotation)
 {
 	isChanged = true;

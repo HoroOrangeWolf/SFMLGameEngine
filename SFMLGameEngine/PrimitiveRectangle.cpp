@@ -1,6 +1,12 @@
 #include "PrimitiveRectangle.h"
 #include <iostream>
 
+/**
+ * .
+ * \brief Konstruktor
+ * \param position Pozycja
+ * \param widthHeight Szerokosc i wysokosc
+ */
 PrimitiveRectangle::PrimitiveRectangle(sf::Vector2f position, sf::Vector2f widthHeight)
 {
 	this->position = position;
@@ -10,6 +16,11 @@ PrimitiveRectangle::PrimitiveRectangle(sf::Vector2f position, sf::Vector2f width
 	this->point3 = sf::Vector2f(0.f, widthHeight.y);
 }
 
+/**
+ * .
+ * \brief Rysowanie prostokata
+ * \param window Wskaznik na okno
+ */
 void PrimitiveRectangle::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
@@ -43,12 +54,22 @@ void PrimitiveRectangle::getToDraw(sf::RenderWindow* window)
 	window->draw(arr);
 }
 
+/**
+ * .
+ * \brief Przesuniecie
+ * \param moveBy Wektor przesuniecia
+ */
 void PrimitiveRectangle::translate(sf::Vector2f moveBy)
 {
 	isChanged = true;
 	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
 }
 
+/**
+ * .
+ * \brief Skalowanie
+ * \param k Wspolczynnik skalowania
+ */
 void PrimitiveRectangle::scale(float k)
 {
 	isChanged = true;
@@ -57,6 +78,11 @@ void PrimitiveRectangle::scale(float k)
 	point3 = sf::Vector2f(point3.x * k, point3.y * k);
 }
 
+/**
+ * .
+ * \brief Rotacja
+ * \param rotation Wspolczynnik rotacji
+ */
 void PrimitiveRectangle::rotate(float rotation)
 {
 	isChanged = true;

@@ -1,6 +1,10 @@
 #include "Player.h"
 #include <iostream>
 
+/**
+ * .
+ * \brief Aktualizuje kierunek poruszania sie gracza
+ */
 void Player::update()
 {
 	isStop = true;
@@ -21,6 +25,10 @@ void Player::update()
 	}
 }
 
+/**
+ * .
+ * \brief Animuje postac gracza
+ */
 void Player::animate()
 {
 	countFPS++;
@@ -92,6 +100,11 @@ void Player::animate()
 	
 }
 
+/**
+ * .
+ * \brief Rysuje obiekt na mapie
+ * \param window Wskaznik na okno
+ */
 void Player::getToDraw(sf::RenderWindow *window)
 {
 	currentSprite.setPosition(position);

@@ -10,7 +10,13 @@
 #include "BitmapHandler.h"
 #include "Player.h"
 
-
+/**
+ * .
+ * \brief Konstruktor okna gry
+ * \param windowTitle Tytul okna
+ * \param windowWidth Szerokosc okna
+ * \param windowHeight Wysokosc okna
+ */
 Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight)
 {
 	this->windowHeight = windowHeight;
@@ -25,6 +31,14 @@ auto Engine::getCurrentTime()
 	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
+/**
+ * .
+ * \brief Konstruktor okna gry
+ * \param windowTitle Tytul okna
+ * \param windowWidth Szerokosc okna
+ * \param windowHeight Wysokosc okna
+ * \param videoStyle Sposob wyswietlania okna gry
+ */
 Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight, int videoStyle)
 {
 	this->windowHeight = windowHeight;
@@ -34,6 +48,12 @@ Engine::Engine(std::string windowTitle, int windowWidth, int windowHeight, int v
 	this->color = Color::White;
 }
 
+/**
+ * .
+ * \brief Konstruktor okna gry
+ * \param windowTitle Tytul okna
+ * \param videoMode Definiuje rozmiar okna
+ */
 Engine::Engine(std::string windowTitle, int videoMode)
 {
 	this->windowHeight = 0;
@@ -43,6 +63,13 @@ Engine::Engine(std::string windowTitle, int videoMode)
 	this->color = Color::White;
 }
 
+/**
+ * .
+ * \brief Konstruktor okna gry
+ * \param videoMode Definiuje rozmiar okna
+ * \param windowTitle Tytul okna
+ * \param videoStyle Sposob wyswietlania okna gry
+ */
 Engine::Engine(VideoMode videoMode, std::string windowTitle, int videoStyle)
 {
 	this->windowHeight = 0;
@@ -52,40 +79,76 @@ Engine::Engine(VideoMode videoMode, std::string windowTitle, int videoStyle)
 	this->color = Color::White;
 }
 
+/**
+ * .
+ * \brief Destruktor
+ */
 Engine::~Engine()
 {
 }
 
+/**
+ * .
+ * \brief Dodaj gracza do silnika
+ * \param player Dodawany gracz
+ */
 void Engine::addPlayer(Player* player)
 {
 	playerList.push_back(player);
 }
 
+/**
+ * .
+ * \brief Usun gracza z silnika
+ */
 void Engine::clearPlayers()
 {
 	playerList.clear();
 }
 
+/**
+ * .
+ * \brief Dodawanie obiektu na mape
+ * \param drawable Dodawany obiekt
+ */
 void Engine::addDrawable(DrawableObject* drawable)
 {
 	drawableList.push_back(drawable);
 }
 
+/**
+ * .
+ * \brief Usuwanie obiektu z mapy
+ */
 void Engine::clearDrawable()
 {
 	drawableList.clear();
 }
 
+/**
+ * .
+ * \brief Ustawianie ilosci klatek na sekunde
+ * \param fps Wartosc klatek na sekunde
+ */
 void Engine::setFps(int fps)
 {
 	this->fps = fps;
 }
 
+/**
+ * .
+ * \brief Ustawianie koloru tla mapy
+ * \param cl Kolor tla
+ */
 void Engine::setBackgroundColor(Color cl)
 {
 	this->color = cl;
 }
 
+/**
+ * .
+ * \brief Glowna petla silnika
+ */
 void Engine::run()
 {
 	this->render = new RenderWindow(VideoMode(windowWidth, windowHeight), windowTitle, videoStyle);
@@ -164,6 +227,11 @@ void Engine::run()
 
 }
 
+/**
+ * .
+ * \brief Sprawdza czy myszka jest w obrebie okna
+ * \return 
+ */
 bool Engine::isMouseInsideWindow()
 {
 	Vector2i windowPoss = render->getPosition();
@@ -177,6 +245,11 @@ bool Engine::isMouseInsideWindow()
 	
 }
 
+/**
+ * .
+ * \brief Zwroc rzeczywista pozycje myszy
+ * \return 
+ */
 Vector2i& Engine::getTrueMousePosition()
 {
 	Vector2i possWindow = render->getPosition();

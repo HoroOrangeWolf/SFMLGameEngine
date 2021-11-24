@@ -1,7 +1,14 @@
 #include "DrawableObject.h"
 #include <iostream>
 
-
+/**
+ * .
+ * \brief Wypelnianie rekurencyjne
+ * \param image Obraz
+ * \param color Kolor wypelnienia
+ * \param x Pozycja X
+ * \param y Pozycja Y
+ */
 void DrawableObject::recuFiller(sf::Image& image, sf::Color& color, int x, int y)
 {
 	if (image.getPixel(x, y) == color)
@@ -15,19 +22,37 @@ void DrawableObject::recuFiller(sf::Image& image, sf::Color& color, int x, int y
 	recuFiller(image, color, x, y - 1);
 }
 
-
+/**
+ * .
+ * \brief Ustawianie pozycji obiektu
+ * \param position Pozycja obiektu
+ */
 void DrawableObject::setPosition(sf::Vector2f position)
 {
 	this->position = position;
 }
 
-
+/**
+ * .
+ * \brief Wstawia pixel na bitmape
+ * \param x Pozycja X
+ * \param y Pozycja Y
+ * \param color Kolor
+ */
 void DrawableObject::putPixel(int x, int y, sf::Color color)
 {
 	if (x >= 0 && x < ims.getSize().x && y >= 0 && y < ims.getSize().y)
 		ims.setPixel(x, y, color);
 }
 
+/**
+ * .
+ * \brief Wypelnia obiekt
+ * \param image Bitmapa
+ * \param color Kolor
+ * \param width Szerokosc
+ * \param height Wysokosc
+ */
 void DrawableObject::evenFiller(sf::Image& image, sf::Color& color, int width, int height)
 {
 	for (int y = 0; y < height; y++)
@@ -60,17 +85,33 @@ void DrawableObject::evenFiller(sf::Image& image, sf::Color& color, int width, i
 
 }
 
+/**
+ * .
+ * \brief Ustawia wartosci poczatkowe
+ */
 DrawableObject::DrawableObject()
 {
 	this->position = sf::Vector2f(0.f, 0.f);
 	isChanged = true;
 }
 
+/**
+ * .
+ * \brief Ustawia kolor
+ * \param color Kolor
+ */
 void DrawableObject::setColor(sf::Color color)
 {
 	this->color = color;
 }
 
+/**
+ * .
+ * \brief Rysuje linie
+ * \param points0 Poczatek linii
+ * \param points1 Koniec linii
+ * \param ar Bitmapa
+ */
 void DrawableObject::drawLine(sf::Vector2f points0, sf::Vector2f points1, sf::Image& ar)
 {
 	double xStart = points0.x;

@@ -1,6 +1,12 @@
 #include "PrimitiveTriangle.h"
 #include <iostream>
 
+/**
+ * .
+ * \brief Konstruktor
+ * \param position Pozycja obiektu
+ * \param widthHeight Szerokosc i wysokosc obiektu
+ */
 PrimitiveTriangle::PrimitiveTriangle(sf::Vector2f position, sf::Vector2f widthHeight)
 {
 	this->position = position;
@@ -10,6 +16,11 @@ PrimitiveTriangle::PrimitiveTriangle(sf::Vector2f position, sf::Vector2f widthHe
 	this->point2 = sf::Vector2f(0.f, widthHeight.y);
 }
 
+/**
+ * .
+ * \brief Rysowanie trojkata
+ * \param window Wskaznik na okno
+ */
 void PrimitiveTriangle::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
@@ -55,12 +66,22 @@ void PrimitiveTriangle::getToDraw(sf::RenderWindow* window)
 	window->draw(arr);
 }
 
+/**
+ * .
+ * \brief Przesuniecie
+ * \param moveBy Wektor przesuniecia
+ */
 void PrimitiveTriangle::translate(sf::Vector2f moveBy)
 {
 	isChanged = true;
 	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
 }
 
+/**
+ * .
+ * \brief Skalowanie
+ * \param k Wspolczynnik skalowania
+ */
 void PrimitiveTriangle::scale(float k)
 {
 	isChanged = true;
@@ -68,6 +89,11 @@ void PrimitiveTriangle::scale(float k)
 	point2 = sf::Vector2f(point2.x * k, point2.y * k);
 }
 
+/**
+ * .
+ * \brief Rotacja
+ * \param rotation Wspolczynnik rotacji
+ */
 void PrimitiveTriangle::rotate(float rotation)
 {
 	isChanged = true;

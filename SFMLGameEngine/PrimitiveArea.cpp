@@ -1,13 +1,23 @@
 #include "PrimitiveArea.h"
 #include <cmath>
 
-
+/**
+ * .
+ * \brief Konstruktor
+ * \param position
+ * \param r
+ */
 PrimitiveArea::PrimitiveArea(sf::Vector2f position, float r)
 {
 	this->position = position;
 	this->r = r;
 }
 
+/**
+ * .
+ * \brief Rysowanie okregu
+ * \param window Wskaznik na okno
+ */
 void PrimitiveArea::getToDraw(sf::RenderWindow* window)
 {
 	if (!isChanged)
@@ -55,18 +65,33 @@ void PrimitiveArea::getToDraw(sf::RenderWindow* window)
 	window->draw(arr);
 }
 
+/**
+ * .
+ * \brief Przesuniecie
+ * \param moveBy Wektor przesuniecia
+ */
 void PrimitiveArea::translate(sf::Vector2f moveBy)
 {
 	isChanged = true;
 	position = sf::Vector2f(position.x + moveBy.x, position.y + moveBy.y);
 }
 
+/**
+ * .
+ * \brief Skalowanie
+ * \param k Wspolczynnik skalowania
+ */
 void PrimitiveArea::scale(float k)
 {
 	isChanged = true;
 	r = std::abs(r * k);
 }
 
+/**
+ * .
+ * \brief Rotacja
+ * \param rotation Wspolczynnik rotacji
+ */
 void PrimitiveArea::rotate(float rotation)
 {
 }

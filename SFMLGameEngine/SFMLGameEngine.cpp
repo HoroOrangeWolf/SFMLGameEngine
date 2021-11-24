@@ -13,7 +13,11 @@
 #include <chrono>
 #include <thread>
 
-
+/**
+ * .
+ * \brief Funkcja main
+ * \return 
+ */
 int main()
 {
 
