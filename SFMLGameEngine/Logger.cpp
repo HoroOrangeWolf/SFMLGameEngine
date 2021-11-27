@@ -6,12 +6,22 @@
 #include "Logger.h"
 #include <fstream>
 
+/**
+ * .
+ * \brief Ustawia plik wyjsciowy
+ * \param path Sciezka
+ */
 void Logger::setPath(std::string path)
 {
 	Logger::filePath = path;
 }
 std::string Logger::filePath = "";
 
+/**
+ * .
+ * \brief Zapisuje wiadomosc
+ * \param data Tresc wiadomosci
+ */
 void Logger::log(std::string data)
 {
 	std::ofstream outfile;

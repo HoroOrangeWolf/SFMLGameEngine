@@ -11,6 +11,7 @@ var searchData=
   ['setframesright_8',['setFramesRight',['../class_animated_object.html#a98fad28900934d47af8e6c1c3a4bd5bb',1,'AnimatedObject']]],
   ['setintervalfps_9',['setIntervalFPS',['../class_animated_object.html#aeeeffe9ab63c9063598065bde358b10b',1,'AnimatedObject']]],
   ['setisstop_10',['setIsStop',['../class_animated_object.html#a796d0ac9d25789a3a8cd726a73fcfd01',1,'AnimatedObject']]],
-  ['setposition_11',['setPosition',['../class_drawable_object.html#a031eae69d49332136f8af5a912e9cc8d',1,'DrawableObject']]],
-  ['spriteobject_12',['SpriteObject',['../class_sprite_object.html',1,'']]]
+  ['setpath_11',['setPath',['../class_logger.html#ab9ad4f6fcaad37f214c289deaf10756d',1,'Logger']]],
+  ['setposition_12',['setPosition',['../class_drawable_object.html#a031eae69d49332136f8af5a912e9cc8d',1,'DrawableObject']]],
+  ['spriteobject_13',['SpriteObject',['../class_sprite_object.html',1,'']]]
 ];
