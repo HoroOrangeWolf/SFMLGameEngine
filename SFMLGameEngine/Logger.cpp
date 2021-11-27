@@ -20,7 +20,7 @@ void Logger::log(std::string data)
 
 	outfile.open(Logger::filePath, std::ios_base::app);
 
-	outfile << data << " [ " << asctime(localtime(&t)) << " ] ";
+	outfile << data << " | " << asctime(localtime(&t));
 
 	outfile.close();
 }
