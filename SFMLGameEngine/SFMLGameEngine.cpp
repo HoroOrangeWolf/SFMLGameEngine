@@ -10,6 +10,7 @@
 #include "PrimitiveObject.h"
 #include "LineSegment.h"
 #include "PrimitiveAreaFast.h"
+#include "Logger.h"
 #include <chrono>
 #include <thread>
 
@@ -20,6 +21,11 @@
  */
 int main()
 {
+
+	//Logger
+	Logger::setPath("logger.txt");
+
+	Logger::log("Wypisano cos do pliku!");
 
 	//Część 1
 	//Linia
